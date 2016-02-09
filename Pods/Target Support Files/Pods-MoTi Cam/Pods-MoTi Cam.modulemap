@@ -1,0 +1,6 @@
+framework module Pods_MoTi_Cam {
+  umbrella header "Pods-MoTi Cam-umbrella.h"
+
+  export *
+  module * { export * }
+}
