@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00BF37D22CD0CE93824E5EAF5C7893E4 /* Pods-MoTi Cam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C15C8E6372D488E6C53561DC87F871 /* Pods-MoTi Cam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		046F9180A9063EB70F588997FC7B65C2 /* Pods-MoTi Cam-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7735D702AFFAD71F497F65426DC38C /* Pods-MoTi Cam-dummy.m */; };
 		2997C8EE62DC683DF05BE27AE66AC84D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B33BFF7B46CF2E26766B880B4EA1F8 /* CoreText.framework */; };
 		37072FF9D4E0AAF2E5831EAAC1A187BB /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F378CB8F5EEDD4BEFB046EB6DAF7D7A /* FontAwesome.swift */; };
 		37663E13D130E25ED4BB3C57C7C3EDB9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9673C648237092F06C85C92A6EF99D4 /* Enum.swift */; };
+		6B4C6D946979667618A4E480A8CBC699 /* Pods-Tile Cam-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DC7764F924852B55CE423E183ED8C2 /* Pods-Tile Cam-dummy.m */; };
 		8717F695895A23838FEE88E8E4E615F4 /* FontAwesome.swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9263204FCB3608978F4B5EE6E83130F4 /* FontAwesome.swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AB062E959BCBAA3167AE4E11656CF080 /* FontAwesome.swift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50D45FC13533E2CA96C93BDDB7A64097 /* FontAwesome.swift.bundle */; };
+		A78111B4FCAE1D9B5CA1DDCEC67CC293 /* Pods-Tile Cam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1357D43AD61317C1E217AE30AE98A6B7 /* Pods-Tile Cam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB062E959BCBAA3167AE4E11656CF080 /* FontAwesome.swift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 42DB68134A33B6EEEF50039AE3E5EC5E /* FontAwesome.swift.bundle */; };
 		B30EFE7D48E521B684DF7C52B33A7414 /* FontAwesome.swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0376A60DA360CB946D6D58880521FFB9 /* FontAwesome.swift-dummy.m */; };
 		CA70E5D37D92608162EC89BCDAD49A59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEF5B76729B657F9078C5EF4D44AE92 /* UIKit.framework */; };
 		D239103F4C1828333DF49FDE38DE7E29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5F169CE6D063164705B1C1595F267A /* Foundation.framework */; };
-		D3BD14186FE254B2C4D437243CD24213 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5F169CE6D063164705B1C1595F267A /* Foundation.framework */; };
+		D3405356B0AE3D83D831F53C9BF44C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5F169CE6D063164705B1C1595F267A /* Foundation.framework */; };
 		EFC74930331D3CDDE496B41F97801081 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5882621F45BCA9C2EE1A97A4F84A6F2A /* FontAwesome.otf */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +29,7 @@
 			remoteGlobalIDString = 6D9EDCF48A5AA1A0B1FB393CB904CF6F;
 			remoteInfo = "FontAwesome.swift-FontAwesome.swift";
 		};
-		6D95E0894659C22CDA3F1C80D67D287A /* PBXContainerItemProxy */ = {
+		ECFEA2FA5ECB4AC3E6C5FAC7D7584AE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -40,31 +40,31 @@
 
 /* Begin PBXFileReference section */
 		0376A60DA360CB946D6D58880521FFB9 /* FontAwesome.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FontAwesome.swift-dummy.m"; sourceTree = "<group>"; };
-		1FB0FD1D7714941DF7CAF7AA14FA69C6 /* Pods-MoTi Cam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MoTi Cam.release.xcconfig"; sourceTree = "<group>"; };
-		2B7735D702AFFAD71F497F65426DC38C /* Pods-MoTi Cam-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MoTi Cam-dummy.m"; sourceTree = "<group>"; };
-		2DC9FC4A143D816A11CADFCE99B34272 /* Pods-MoTi Cam-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MoTi Cam-frameworks.sh"; sourceTree = "<group>"; };
+		12DC7764F924852B55CE423E183ED8C2 /* Pods-Tile Cam-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tile Cam-dummy.m"; sourceTree = "<group>"; };
+		1357D43AD61317C1E217AE30AE98A6B7 /* Pods-Tile Cam-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tile Cam-umbrella.h"; sourceTree = "<group>"; };
+		22F9CC5F7069B48C354AD30522259965 /* Pods-Tile Cam-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tile Cam-acknowledgements.plist"; sourceTree = "<group>"; };
 		2F378CB8F5EEDD4BEFB046EB6DAF7D7A /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = FontAwesome/FontAwesome.swift; sourceTree = "<group>"; };
-		3A849C43F8E399AC0E75BEF77DD03D0C /* Pods-MoTi Cam.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MoTi Cam.modulemap"; sourceTree = "<group>"; };
+		32C326E80D68933FF76AF3B49C376028 /* Pods-Tile Cam-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tile Cam-resources.sh"; sourceTree = "<group>"; };
+		38F25316C69C55548D53C9BC6082D9EC /* Pods-Tile Cam-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tile Cam-frameworks.sh"; sourceTree = "<group>"; };
+		42DB68134A33B6EEEF50039AE3E5EC5E /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		4505D0095C3F281F1640399AF91FAB76 /* Pods-Tile Cam.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Tile Cam.modulemap"; sourceTree = "<group>"; };
 		50341928934BB5EA681F4F8994B75EAA /* FontAwesome.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-prefix.pch"; sourceTree = "<group>"; };
-		50D45FC13533E2CA96C93BDDB7A64097 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		5882621F45BCA9C2EE1A97A4F84A6F2A /* FontAwesome.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.otf; path = FontAwesome/FontAwesome.otf; sourceTree = "<group>"; };
-		60C15C8E6372D488E6C53561DC87F871 /* Pods-MoTi Cam-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MoTi Cam-umbrella.h"; sourceTree = "<group>"; };
-		6BC8865D4DC3667BB6E9DA89C67006A2 /* Pods-MoTi Cam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MoTi Cam.debug.xcconfig"; sourceTree = "<group>"; };
-		706FE678C6898EF3B717E46057473339 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontAwesome_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65460AF3C659752E4C61A848459CBF3C /* Pods-Tile Cam-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tile Cam-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7FEF5B76729B657F9078C5EF4D44AE92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		8162CEAA16AB0BC5BD5A1305DABC7BD7 /* Pods-MoTi Cam-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MoTi Cam-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8505C7268ED2C3588D6E11513905AFB5 /* Pods_MoTi_Cam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoTi_Cam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		884EA0237712C5FAB03B8F182D32BC62 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CFF2A0F7648979954EB1942929EADFC /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontAwesome_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5F169CE6D063164705B1C1595F267A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9263204FCB3608978F4B5EE6E83130F4 /* FontAwesome.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-umbrella.h"; sourceTree = "<group>"; };
+		99E5D514D129AC761D908245CD7E4BE0 /* Pods-Tile Cam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tile Cam.debug.xcconfig"; sourceTree = "<group>"; };
 		AB8AE00A8F14B084838B39950D3F4583 /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
-		BA47E7BD7769EDE57DBD56EBE74C1C7E /* Pods-MoTi Cam-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MoTi Cam-resources.sh"; sourceTree = "<group>"; };
+		B5255B567390D9A6B9F7A0483C433EDA /* Pods_Tile_Cam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tile_Cam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C7E23E5C0ED30768EA2A40A803191AB3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9673C648237092F06C85C92A6EF99D4 /* Enum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enum.swift; path = FontAwesome/Enum.swift; sourceTree = "<group>"; };
+		CF3ABAC415E2549CA3C05A0EFA5FBE84 /* Pods-Tile Cam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tile Cam.release.xcconfig"; sourceTree = "<group>"; };
 		D6B33BFF7B46CF2E26766B880B4EA1F8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		DC5D08BC14162355102388AB4892A0A7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6194E8408B69E0FC2D652E29D6B9820 /* FontAwesome.swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FontAwesome.swift.xcconfig; sourceTree = "<group>"; };
-		F751FE20F5117E5DA6B0E441201EA80B /* Pods-MoTi Cam-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MoTi Cam-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,11 +75,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6145C96B67CD22743B2B4A78FBD4DB17 /* Frameworks */ = {
+		5568CCAA027B4BDA02BDE438E8935865 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3BD14186FE254B2C4D437243CD24213 /* Foundation.framework in Frameworks */,
+				D3405356B0AE3D83D831F53C9BF44C84 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +104,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1C0DF95C8710468EF56F3FF71F793493 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42DB68134A33B6EEEF50039AE3E5EC5E /* FontAwesome.swift.bundle */,
+				8CFF2A0F7648979954EB1942929EADFC /* FontAwesome_swift.framework */,
+				B5255B567390D9A6B9F7A0483C433EDA /* Pods_Tile_Cam.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2557CDDBE131AF74907140D630378612 /* FontAwesome.swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,32 +125,12 @@
 			path = FontAwesome.swift;
 			sourceTree = "<group>";
 		};
-		2C1822DFF536D7256507D93F22C91B72 /* Products */ = {
+		5F2850CC7263AFD4B30EDA5D47DBB6F0 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				50D45FC13533E2CA96C93BDDB7A64097 /* FontAwesome.swift.bundle */,
-				706FE678C6898EF3B717E46057473339 /* FontAwesome_swift.framework */,
-				8505C7268ED2C3588D6E11513905AFB5 /* Pods_MoTi_Cam.framework */,
+				92F48C38BCBB87F8B897368C93FFFCC2 /* Pods-Tile Cam */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		5658041629D83AA7BD7CEF3233F8499D /* Pods-MoTi Cam */ = {
-			isa = PBXGroup;
-			children = (
-				DC5D08BC14162355102388AB4892A0A7 /* Info.plist */,
-				3A849C43F8E399AC0E75BEF77DD03D0C /* Pods-MoTi Cam.modulemap */,
-				8162CEAA16AB0BC5BD5A1305DABC7BD7 /* Pods-MoTi Cam-acknowledgements.markdown */,
-				F751FE20F5117E5DA6B0E441201EA80B /* Pods-MoTi Cam-acknowledgements.plist */,
-				2B7735D702AFFAD71F497F65426DC38C /* Pods-MoTi Cam-dummy.m */,
-				2DC9FC4A143D816A11CADFCE99B34272 /* Pods-MoTi Cam-frameworks.sh */,
-				BA47E7BD7769EDE57DBD56EBE74C1C7E /* Pods-MoTi Cam-resources.sh */,
-				60C15C8E6372D488E6C53561DC87F871 /* Pods-MoTi Cam-umbrella.h */,
-				6BC8865D4DC3667BB6E9DA89C67006A2 /* Pods-MoTi Cam.debug.xcconfig */,
-				1FB0FD1D7714941DF7CAF7AA14FA69C6 /* Pods-MoTi Cam.release.xcconfig */,
-			);
-			name = "Pods-MoTi Cam";
-			path = "Target Support Files/Pods-MoTi Cam";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -149,8 +139,8 @@
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
 				89D05034E9E5F572747D02A0D5DDFB2A /* Pods */,
-				2C1822DFF536D7256507D93F22C91B72 /* Products */,
-				9923D326D922B1EBA4BFA4303C44A6E1 /* Targets Support Files */,
+				1C0DF95C8710468EF56F3FF71F793493 /* Products */,
+				5F2850CC7263AFD4B30EDA5D47DBB6F0 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,12 +152,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9923D326D922B1EBA4BFA4303C44A6E1 /* Targets Support Files */ = {
+		92F48C38BCBB87F8B897368C93FFFCC2 /* Pods-Tile Cam */ = {
 			isa = PBXGroup;
 			children = (
-				5658041629D83AA7BD7CEF3233F8499D /* Pods-MoTi Cam */,
+				C7E23E5C0ED30768EA2A40A803191AB3 /* Info.plist */,
+				4505D0095C3F281F1640399AF91FAB76 /* Pods-Tile Cam.modulemap */,
+				65460AF3C659752E4C61A848459CBF3C /* Pods-Tile Cam-acknowledgements.markdown */,
+				22F9CC5F7069B48C354AD30522259965 /* Pods-Tile Cam-acknowledgements.plist */,
+				12DC7764F924852B55CE423E183ED8C2 /* Pods-Tile Cam-dummy.m */,
+				38F25316C69C55548D53C9BC6082D9EC /* Pods-Tile Cam-frameworks.sh */,
+				32C326E80D68933FF76AF3B49C376028 /* Pods-Tile Cam-resources.sh */,
+				1357D43AD61317C1E217AE30AE98A6B7 /* Pods-Tile Cam-umbrella.h */,
+				99E5D514D129AC761D908245CD7E4BE0 /* Pods-Tile Cam.debug.xcconfig */,
+				CF3ABAC415E2549CA3C05A0EFA5FBE84 /* Pods-Tile Cam.release.xcconfig */,
 			);
-			name = "Targets Support Files";
+			name = "Pods-Tile Cam";
+			path = "Target Support Files/Pods-Tile Cam";
 			sourceTree = "<group>";
 		};
 		9F8F54DD2A6D66232C96B2AF7E0E9215 /* iOS */ = {
@@ -205,19 +205,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		12E9EF5C555BE726F511A7EB555CACF9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A78111B4FCAE1D9B5CA1DDCEC67CC293 /* Pods-Tile Cam-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90866830FCDA0B26E62ADA62524590DF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8717F695895A23838FEE88E8E4E615F4 /* FontAwesome.swift-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AEC3B409EED94377BF632315721A212D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00BF37D22CD0CE93824E5EAF5C7893E4 /* Pods-MoTi Cam-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +238,7 @@
 			);
 			name = "FontAwesome.swift-FontAwesome.swift";
 			productName = "FontAwesome.swift-FontAwesome.swift";
-			productReference = 50D45FC13533E2CA96C93BDDB7A64097 /* FontAwesome.swift.bundle */;
+			productReference = 42DB68134A33B6EEEF50039AE3E5EC5E /* FontAwesome.swift.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		744D8936F538391EE0E1CD29AC2DAC87 /* FontAwesome.swift */ = {
@@ -257,25 +257,25 @@
 			);
 			name = FontAwesome.swift;
 			productName = FontAwesome.swift;
-			productReference = 706FE678C6898EF3B717E46057473339 /* FontAwesome_swift.framework */;
+			productReference = 8CFF2A0F7648979954EB1942929EADFC /* FontAwesome_swift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EDCA7A6B4030CFECD0E80982AB58146D /* Pods-MoTi Cam */ = {
+		ACE22D37B87A68B86EDFB70954EECBE1 /* Pods-Tile Cam */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C3C49733412403A72DDCC84D7EFD45F /* Build configuration list for PBXNativeTarget "Pods-MoTi Cam" */;
+			buildConfigurationList = 2980720AE095A151AAA73C5F030852C6 /* Build configuration list for PBXNativeTarget "Pods-Tile Cam" */;
 			buildPhases = (
-				0AFE078E579F41965C326332938A3C41 /* Sources */,
-				6145C96B67CD22743B2B4A78FBD4DB17 /* Frameworks */,
-				AEC3B409EED94377BF632315721A212D /* Headers */,
+				488D3D9A6CFB3E363160B02D2883D7EC /* Sources */,
+				5568CCAA027B4BDA02BDE438E8935865 /* Frameworks */,
+				12E9EF5C555BE726F511A7EB555CACF9 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B685A7E8B2CD27A638CCD9E97BD99F99 /* PBXTargetDependency */,
+				18285C04D57BDE2B6FDB0BE04B7262DD /* PBXTargetDependency */,
 			);
-			name = "Pods-MoTi Cam";
-			productName = "Pods-MoTi Cam";
-			productReference = 8505C7268ED2C3588D6E11513905AFB5 /* Pods_MoTi_Cam.framework */;
+			name = "Pods-Tile Cam";
+			productName = "Pods-Tile Cam";
+			productReference = B5255B567390D9A6B9F7A0483C433EDA /* Pods_Tile_Cam.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -295,13 +295,13 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 2C1822DFF536D7256507D93F22C91B72 /* Products */;
+			productRefGroup = 1C0DF95C8710468EF56F3FF71F793493 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				744D8936F538391EE0E1CD29AC2DAC87 /* FontAwesome.swift */,
 				6D9EDCF48A5AA1A0B1FB393CB904CF6F /* FontAwesome.swift-FontAwesome.swift */,
-				EDCA7A6B4030CFECD0E80982AB58146D /* Pods-MoTi Cam */,
+				ACE22D37B87A68B86EDFB70954EECBE1 /* Pods-Tile Cam */,
 			);
 		};
 /* End PBXProject section */
@@ -326,18 +326,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0AFE078E579F41965C326332938A3C41 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				046F9180A9063EB70F588997FC7B65C2 /* Pods-MoTi Cam-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0CF045CA99661B7F2A055E6A3DD96154 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		488D3D9A6CFB3E363160B02D2883D7EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B4C6D946979667618A4E480A8CBC699 /* Pods-Tile Cam-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,21 +354,51 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		18285C04D57BDE2B6FDB0BE04B7262DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FontAwesome.swift;
+			target = 744D8936F538391EE0E1CD29AC2DAC87 /* FontAwesome.swift */;
+			targetProxy = ECFEA2FA5ECB4AC3E6C5FAC7D7584AE1 /* PBXContainerItemProxy */;
+		};
 		21096E14671450CD5B26B662FAFE76C0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "FontAwesome.swift-FontAwesome.swift";
 			target = 6D9EDCF48A5AA1A0B1FB393CB904CF6F /* FontAwesome.swift-FontAwesome.swift */;
 			targetProxy = 3E34373661A9D307C994BE0D7577C29B /* PBXContainerItemProxy */;
 		};
-		B685A7E8B2CD27A638CCD9E97BD99F99 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FontAwesome.swift;
-			target = 744D8936F538391EE0E1CD29AC2DAC87 /* FontAwesome.swift */;
-			targetProxy = 6D95E0894659C22CDA3F1C80D67D287A /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		032E42A3AD3912AADDA6A83A213A0386 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF3ABAC415E2549CA3C05A0EFA5FBE84 /* Pods-Tile Cam.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Tile Cam/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Tile Cam/Pods-Tile Cam.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Tile_Cam;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		0F88662F303C7C1960E56C2F2F62FE0C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6194E8408B69E0FC2D652E29D6B9820 /* FontAwesome.swift.xcconfig */;
@@ -381,9 +411,9 @@
 			};
 			name = Debug;
 		};
-		172B4BEAAED2A2B5149D4D22C0173DD1 /* Debug */ = {
+		2B31DA6DEC6AA781D4A1B7C06A70585B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BC8865D4DC3667BB6E9DA89C67006A2 /* Pods-MoTi Cam.debug.xcconfig */;
+			baseConfigurationReference = 99E5D514D129AC761D908245CD7E4BE0 /* Pods-Tile Cam.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -392,17 +422,17 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-MoTi Cam/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Tile Cam/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MoTi Cam/Pods-MoTi Cam.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-Tile Cam/Pods-Tile Cam.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_MoTi_Cam;
+				PRODUCT_NAME = Pods_Tile_Cam;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -411,36 +441,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		3E15506713EB63C674FFEAF23965B83F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FB0FD1D7714941DF7CAF7AA14FA69C6 /* Pods-MoTi Cam.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-MoTi Cam/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MoTi Cam/Pods-MoTi Cam.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_MoTi_Cam;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		4A2BEAC852FCCE9D56FD30410A446AB5 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -594,6 +594,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2980720AE095A151AAA73C5F030852C6 /* Build configuration list for PBXNativeTarget "Pods-Tile Cam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B31DA6DEC6AA781D4A1B7C06A70585B /* Debug */,
+				032E42A3AD3912AADDA6A83A213A0386 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -608,15 +617,6 @@
 			buildConfigurations = (
 				DB7F6B0CA403308E561E6E674FE01CE1 /* Debug */,
 				4A2BEAC852FCCE9D56FD30410A446AB5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7C3C49733412403A72DDCC84D7EFD45F /* Build configuration list for PBXNativeTarget "Pods-MoTi Cam" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				172B4BEAAED2A2B5149D4D22C0173DD1 /* Debug */,
-				3E15506713EB63C674FFEAF23965B83F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

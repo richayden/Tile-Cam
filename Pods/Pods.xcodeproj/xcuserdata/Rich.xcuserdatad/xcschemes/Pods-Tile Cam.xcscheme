@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '58532E7C4DE3C768802875D6'
-               BlueprintName = 'FontAwesome.swift-FontAwesome.swift'
+               BlueprintIdentifier = '61B9CAEDBDF41D413F6F901A'
+               BlueprintName = 'Pods-Tile Cam'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'FontAwesome.swift.bundle'>
+               BuildableName = 'Pods_Tile_Cam.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
