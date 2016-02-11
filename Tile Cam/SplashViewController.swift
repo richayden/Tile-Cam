@@ -1,6 +1,6 @@
 //
 //  SplashViewController.swift
-//  MoTi Cam
+//  Tile Cam
 //
 //  Created by Richard Hayden on 2/9/16.
 //  Copyright © 2016 richayden. All rights reserved.
@@ -33,12 +33,12 @@ class SplashViewController: UIViewController {
         
         //CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 30, (UIScreen.mainScreen().bounds.size.height) - 80, 60, 60)
         
-        UIView.animateWithDuration(1.0 ,
+        UIView.animateWithDuration(0.9 ,
             animations: {
                 self.imageView.transform = CGAffineTransformMakeScale(-30, -30)
             },
             completion: { finish in
-                UIView.animateWithDuration(1.0){
+                UIView.animateWithDuration(0.9){
                     self.imageView.transform = CGAffineTransformMakeScale(80, 80)
                 }
         })

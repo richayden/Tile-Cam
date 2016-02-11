@@ -7,11 +7,16 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="FontAwesome.otf">
+            <string>FontAwesome</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="5xV-e8-TA5">
             <objects>
-                <viewController id="ib9-pd-yGL" customClass="ViewController" customModule="MoTi_Cam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ib9-pd-yGL" customClass="ViewController" customModule="Tile_Cam" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xuV-aU-wmb"/>
                         <viewControllerLayoutGuide type="bottom" id="B7p-hN-i73"/>
@@ -40,7 +45,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="i0l-d0-JbC" customClass="CVCell" customModule="MoTi_Cam" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="i0l-d0-JbC" customClass="CVCell" customModule="Tile_Cam" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -70,10 +75,10 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="MtH-fx-cf0">
+                        <barButtonItem title="Item" style="plain" id="iQV-FG-nhX">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="gridButtonPressed:" destination="ib9-pd-yGL" id="c3h-PH-gUV"/>
+                                <action selector="cancelButtonPressed:" destination="ib9-pd-yGL" id="5tQ-jM-B1b"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Jnl-ah-pgt"/>
@@ -93,10 +98,10 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="3VY-C9-90R"/>
-                        <barButtonItem title="Item" id="02o-oj-JCI">
+                        <barButtonItem title="Item" style="plain" id="nfS-aO-GMh">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="zZp-te-qtw" kind="presentation" id="l1w-ND-8NV"/>
+                                <action selector="saveImageButtonPressed:" destination="ib9-pd-yGL" id="IcU-6D-apM"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -114,20 +119,21 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GUH-qg-TCj">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9aM-h2-HHX">
+                            <rect key="frame" x="180" y="4" width="240" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <state key="normal" title="Tile Cam"/>
                         </button>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" style="plain" id="nfS-aO-GMh">
+                            <barButtonItem title="Item" id="02o-oj-JCI">
                                 <connections>
-                                    <action selector="saveImageButtonPressed:" destination="ib9-pd-yGL" id="IcU-6D-apM"/>
+                                    <segue destination="zZp-te-qtw" kind="presentation" id="l1w-ND-8NV"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" style="plain" id="iQV-FG-nhX">
+                            <barButtonItem title="Item" id="MtH-fx-cf0">
                                 <connections>
-                                    <action selector="cancelButtonPressed:" destination="ib9-pd-yGL" id="5tQ-jM-B1b"/>
+                                    <action selector="gridButtonPressed:" destination="ib9-pd-yGL" id="c3h-PH-gUV"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -153,7 +159,7 @@
         <!--Splash View Controller-->
         <scene sceneID="fIK-9o-z3R">
             <objects>
-                <viewController id="Mms-n5-kn0" customClass="SplashViewController" customModule="MoTi_Cam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Mms-n5-kn0" customClass="SplashViewController" customModule="Tile_Cam" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kae-ba-NGh"/>
                         <viewControllerLayoutGuide type="bottom" id="I3g-eK-IuY"/>
@@ -175,39 +181,60 @@
         <!--Menu Table View Controller-->
         <scene sceneID="mXT-xr-KPV">
             <objects>
-                <tableViewController id="zZp-te-qtw" customClass="MenuTableViewController" customModule="MoTi_Cam" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Iqg-EM-eSq">
+                <tableViewController id="zZp-te-qtw" customClass="MenuTableViewController" customModule="Tile_Cam" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="1" sectionFooterHeight="1" id="Iqg-EM-eSq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vsv-2v-5SQ">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="033-Ha-Umi" customClass="MenuTableViewCell" customModule="MoTi_Cam" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="600" height="50"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="65" id="033-Ha-Umi" customClass="MenuTableViewCell" customModule="Tile_Cam" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="11" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="033-Ha-Umi" id="2VA-EF-TEn">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQN-JC-WbV">
-                                            <rect key="frame" x="17" y="10" width="62" height="31"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sg-PX-Rg3">
+                                            <rect key="frame" x="8" y="8" width="27" height="20"/>
+                                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca7-37-HaK">
+                                            <rect key="frame" x="38" y="7" width="549" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-Ov-nfe">
+                                            <rect key="frame" x="38" y="29" width="549" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="iQN-JC-WbV" firstAttribute="leading" secondItem="2VA-EF-TEn" secondAttribute="leadingMargin" constant="9" id="B9x-wF-YQt"/>
-                                        <constraint firstAttribute="centerY" secondItem="iQN-JC-WbV" secondAttribute="centerY" id="zui-6P-VQk"/>
+                                        <constraint firstItem="Ca7-37-HaK" firstAttribute="centerY" secondItem="7sg-PX-Rg3" secondAttribute="centerY" id="90w-rH-9Tg"/>
+                                        <constraint firstAttribute="topMargin" secondItem="7sg-PX-Rg3" secondAttribute="top" id="BBf-Hl-OiE"/>
+                                        <constraint firstItem="Ca7-37-HaK" firstAttribute="leading" secondItem="7sg-PX-Rg3" secondAttribute="trailing" constant="3" id="JIi-3k-YYS"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4jb-Ov-nfe" secondAttribute="trailing" constant="5" id="SRd-v8-HjD"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ca7-37-HaK" secondAttribute="trailing" constant="5" id="TUE-FY-koO"/>
+                                        <constraint firstItem="4jb-Ov-nfe" firstAttribute="leading" secondItem="2VA-EF-TEn" secondAttribute="leadingMargin" constant="30" id="Wae-U6-e6u"/>
+                                        <constraint firstItem="Ca7-37-HaK" firstAttribute="leading" secondItem="2VA-EF-TEn" secondAttribute="leadingMargin" constant="30" id="d3C-FW-sML"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="7sg-PX-Rg3" secondAttribute="leading" id="giX-Ga-mtT"/>
+                                        <constraint firstItem="4jb-Ov-nfe" firstAttribute="top" secondItem="Ca7-37-HaK" secondAttribute="bottom" constant="1" id="syE-Wo-b3C"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="titleLabel" destination="iQN-JC-WbV" id="giB-lm-0Ov"/>
+                                    <outlet property="fontawesomeLabel" destination="7sg-PX-Rg3" id="JKc-Uo-31B"/>
+                                    <outlet property="subtitleLabel" destination="4jb-Ov-nfe" id="9Ou-e9-CqP"/>
+                                    <outlet property="titleLabel" destination="Ca7-37-HaK" id="EnX-Ck-xFd"/>
                                     <segue destination="HE4-NR-vku" kind="unwind" unwindAction="unwindToHome:" id="qWq-xq-Evw"/>
                                 </connections>
                             </tableViewCell>

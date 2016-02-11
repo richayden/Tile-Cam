@@ -1,6 +1,6 @@
 //
 //  CVCell.swift
-//  MoTi Cam
+//  Tile Cam
 //
 //  Created by Richard Hayden on 1/5/16.
 //  Copyright © 2016 richayden. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  MoTi Cam
+//  Tile Cam
 //
 //  Created by Richard Hayden on 1/6/16.
 //  Copyright © 2016 richayden. All rights reserved.
@@ -49,7 +49,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     @IBOutlet weak var help: UIBarButtonItem!
     @IBOutlet weak var zoomMinus: UIBarButtonItem!
-    
     @IBOutlet weak var zoomMag: UIBarButtonItem!
     @IBOutlet weak var zoomPlus: UIBarButtonItem!
     @IBOutlet weak var gridButton: UIBarButtonItem!
@@ -57,8 +56,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var switchCamera: UIBarButtonItem!
     @IBOutlet weak var flash: UIBarButtonItem!
-    
-    @IBOutlet weak var menu: UIBarButtonItem!
     @IBOutlet var collectionView: UICollectionView!
     
     var someNumber = 1
@@ -126,6 +123,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         zoomMinus.title = String.fontAwesomeIconWithName(.MinusSquareO)
         help.setTitleTextAttributes(attributes, forState: .Normal)
         help.title = String.fontAwesomeIconWithName(.QuestionCircle)
+        
+//        var fixedSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+//        fixedSpace.width = 25.0
+//        
+//        var negativeSpace:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+//        negativeSpace.width = 15.0
+//        
+//        navigationItem.rightBarButtonItems = [negativeSpace, save, fixedSpace, cancel, negativeSpace, titleButton, negativeSpace, switchCamera, fixedSpace, flash, negativeSpace]
 
         
         //self.collectionView.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
@@ -162,7 +167,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         screenWidth = UIScreen.mainScreen().bounds.size.width
         
-        slider = UISlider(frame: CGRectMake(20, screenWidth + 54, screenWidth - 40, 30))
+        slider = UISlider(frame: CGRectMake(20, screenWidth + 54, screenWidth - 40, 50))
         self.view.addSubview(slider!)
         
         // slider values go from 0 to the number of values in your numbers array

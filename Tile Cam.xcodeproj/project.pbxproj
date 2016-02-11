@@ -141,6 +141,7 @@
 				TargetAttributes = {
 					9BEF97501C3C30C100C4CF36 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 86F2JH6FE5;
 					};
 				};
 			};
@@ -349,10 +350,14 @@
 			baseConfigurationReference = F80DC8E4B57881AE7AA855B6 /* Pods-Tile Cam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Tile Cam/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richayden.Tile-Cam";
 				PRODUCT_NAME = "Tile Cam";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -361,10 +366,14 @@
 			baseConfigurationReference = 9098575B39974600AF2E311A /* Pods-Tile Cam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Tile Cam/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richayden.Tile-Cam";
 				PRODUCT_NAME = "Tile Cam";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
