@@ -11,18 +11,6 @@ import AVFoundation
 import CoreImage
 import FontAwesome_swift
 
-//import CoreMedia
-
-//class MaskView : UIView {
-//    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        if let mask = self.layer.mask {
-//            mask.frame = self.bounds
-//        }
-//    }
-//}
-
 //FILTERS
 //let Posterize = "Posterize"
 //let PosterizeFilter = CIFilter(name: "CIColorPosterize", withInputParameters: ["inputLevels" : 5])
@@ -59,62 +47,44 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet var collectionView: UICollectionView!
     
     var someNumber = 1
-    
     var screenWidth: CGFloat!
-    
     //Slider Variables
     var slider:UISlider?
-    // These number values represent each slider position
-    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] //Add your values here
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     var oldIndex = 0
-    
-    //Camera Variables
-    
-    //@IBOutlet weak
     var previewView: UIView!
-    
     var capturedImage: UIImageView!
-    
     var captureSession : AVCaptureSession!
     var stillImageOutput : AVCaptureStillImageOutput!
     var previewLayer : AVCaptureVideoPreviewLayer!
-    //var iv : UIImageView!
-    
     var frameRect: CGRect?
-    //var photoRect: CGRect?
+    var backFacingCamera: AVCaptureDevice?
+    var frontFacingCamera: AVCaptureDevice?
+    var currentDevice: AVCaptureDevice?
+    //var toggleCameraGestureRecognizer = UISwipeGestureRecognizer()
+    var zoomInGestureRecognizer = UISwipeGestureRecognizer()
+    var zoomOutGestureRecognizer = UISwipeGestureRecognizer()
     
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
-    var backFacingCamera: AVCaptureDevice?
-    var frontFacingCamera: AVCaptureDevice?
-    var currentDevice: AVCaptureDevice?
-    
-    //var toggleCameraGestureRecognizer = UISwipeGestureRecognizer()
-    
-    var zoomInGestureRecognizer = UISwipeGestureRecognizer()
-    var zoomOutGestureRecognizer = UISwipeGestureRecognizer()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
         
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(24)] as Dictionary!
         flash.setTitleTextAttributes(attributes, forState: .Normal)
         flash.title = String.fontAwesomeIconWithName(.SunO)
-        
         switchCamera.setTitleTextAttributes(attributes, forState: .Normal)
         switchCamera.title = String.fontAwesomeIconWithName(.Refresh)
-        
         cancel.setTitleTextAttributes(attributes, forState: .Normal)
         cancel.title = String.fontAwesomeIconWithName(.Eraser)
-        
         save.setTitleTextAttributes(attributes, forState: .Normal)
         save.title = String.fontAwesomeIconWithName(.Photo)
-        
         gridButton.setTitleTextAttributes(attributes, forState: .Normal)
         gridButton.title = String.fontAwesomeIconWithName(.Th)
-        
         zoomPlus.setTitleTextAttributes(attributes, forState: .Normal)
         zoomPlus.title = String.fontAwesomeIconWithName(.PlusSquareO)
         zoomMag.setTitleTextAttributes(attributes, forState: .Normal)
@@ -132,25 +102,21 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 //        
 //        navigationItem.rightBarButtonItems = [negativeSpace, save, fixedSpace, cancel, negativeSpace, titleButton, negativeSpace, switchCamera, fixedSpace, flash, negativeSpace]
 
-        
-        //self.collectionView.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
-        
-//        let btn: UIButton = UIButton(frame: CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 30, (UIScreen.mainScreen().bounds.size.height) - 80, 60, 60))
-//        btn.backgroundColor = UIColor.whiteColor()
-//        //btn.setTitle("Click Me", forState: UIControlState.Normal)
-//        btn.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-//        //btn.tag = 1               // change tag property
-//        self.view.addSubview(btn) // add to view as subview
-//        
-//        btn.layer.cornerRadius = 30
-//        //btn.layer.borderWidth = 1
-//        //btn.layer.borderColor = UIColor.blackColor().CGColor
-//        btn.layer.shadowColor = UIColor.whiteColor().CGColor
-//        btn.layer.shadowOpacity = 1
-//        btn.layer.shadowOffset = CGSizeZero
-//        btn.layer.shadowRadius = 10
-        
-        //FILTERS
+        let btn: UIButton = UIButton(frame: CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 30, (UIScreen.mainScreen().bounds.size.height) - 124, 60, 60))
+        btn.backgroundColor = UIColor.whiteColor()
+        //btn.setTitle("Click Me", forState: UIControlState.Normal)
+        btn.addTarget(self, action: "buttonAction:", forControlEvents: .TouchUpInside)
+        //btn.tag = 1               // change tag property
+        self.view.addSubview(btn) // add to view as subview
+        btn.layer.cornerRadius = 30
+        //btn.layer.borderWidth = 1
+        //btn.layer.borderColor = UIColor.blackColor().CGColor
+        btn.layer.shadowColor = UIColor.whiteColor().CGColor
+        btn.layer.shadowOpacity = 1
+        btn.layer.shadowOffset = CGSizeZero
+        btn.layer.shadowRadius = 10
+
+//FILTERS
 //        view.addSubview(mainGroup)
 //        mainGroup.axis = UILayoutConstraintAxis.Vertical
 //        mainGroup.distribution = UIStackViewDistribution.Fill
@@ -164,17 +130,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         //END
         
         capturedImage?.image = UIImage(named: "shutter")
-        
         screenWidth = UIScreen.mainScreen().bounds.size.width
         
         slider = UISlider(frame: CGRectMake(20, screenWidth + 54, screenWidth - 40, 50))
         self.view.addSubview(slider!)
-        
-        // slider values go from 0 to the number of values in your numbers array
         let numberOfSteps = Float(numbers.count - 1)
         slider!.maximumValue = numberOfSteps;
         slider!.minimumValue = 0;
-        
         // As the slider moves it will continously call the -valueChanged:
         slider!.continuous = true; // false makes it call only once you let go
         slider!.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
@@ -190,23 +152,16 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         for device in devices {
             if device.position == AVCaptureDevicePosition.Back {
                 backFacingCamera = device
-                //flash.enabled = true
-                
             } else if device.position == AVCaptureDevicePosition.Front {
                 frontFacingCamera = device
-                //flash.enabled = false
-                
             }
         }
         currentDevice = backFacingCamera
-        //flash.enabled = true
-        
         do {
             _ = try AVCaptureDeviceInput(device: currentDevice)
         } catch {
             print(error)
         }
-        
         
 //        toggleCameraGestureRecognizer.direction = .Up
 //        toggleCameraGestureRecognizer.addTarget(self, action: "toggleCamera")
@@ -220,23 +175,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 //        zoomOutGestureRecognizer.addTarget(self, action: "zoomOut")
 //        view.addGestureRecognizer(zoomOutGestureRecognizer)
         
-        
-        
-        
-        
         if self.captureSession != nil && self.captureSession.running {
             self.captureSession.stopRunning()
             self.previewLayer.removeFromSuperlayer()
             self.captureSession = nil
             return
         }
-        
         self.captureSession = AVCaptureSession()
-        
         self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
-        
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
         var error: NSError?
         var input: AVCaptureDeviceInput!
         do {
@@ -245,27 +192,18 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             error = error1
             input = nil
         }
-        
         if error == nil && captureSession!.canAddInput(input) {
             captureSession!.addInput(input)
-            
 //            let videoOutput = AVCaptureVideoDataOutput()
 //            videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey : Int(kCVPixelFormatType_32BGRA)]
 //            videoOutput.alwaysDiscardsLateVideoFrames = true
-            
             stillImageOutput = AVCaptureStillImageOutput()
             stillImageOutput!.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
-            
-            
-            
 //            videoOutput.setSampleBufferDelegate(self, queue: dispatch_queue_create("sample buffer delegate", DISPATCH_QUEUE_SERIAL))
-            
             if captureSession!.canAddOutput(stillImageOutput) {
                 captureSession!.addOutput(stillImageOutput)
-            
 //            if captureSession!.canAddOutput(videoOutput) {
 //                captureSession!.addOutput(videoOutput)
-                
                 previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
                 previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
                 previewLayer!.connection?.videoOrientation = AVCaptureVideoOrientation.Portrait
@@ -288,6 +226,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             }
         }
     }
+    
     func presentActivityVCForImage(image: UIImage) {
         self.presentViewController(
             UIActivityViewController(activityItems: [image], applicationActivities: nil),
@@ -331,11 +270,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             print(error)
             return
         }
-        
         if captureSession.canAddInput(cameraInput) {
             captureSession.addInput(cameraInput)
         }
-        
         currentDevice = newDevice
         captureSession.commitConfiguration()
     }
@@ -369,56 +306,52 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             }
         }
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         capturedImage = UIImageView(frame: previewView.frame)
-        //capturedImage.clipsToBounds = false
-        //capturedImage.contentMode = UIViewContentMode.ScaleAspectFill
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         collectionView!.frame = previewView.frame
         previewLayer!.frame = previewView.bounds
-//        previewView.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     func createGrid() {
-        
         for subview in view.subviews {
             if subview is UICollectionView {
                 //print(subview)
                 subview.removeFromSuperview()
             }
         }
-        
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: screenWidth/CGFloat(someNumber), height: screenWidth/CGFloat(someNumber))
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        collectionView! = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        collectionView!.frame = previewView.frame
-        collectionView!.dataSource = self
-        collectionView!.delegate = self
-        collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView!.backgroundColor = UIColor.clearColor()
-        
-        self.view.insertSubview(collectionView!, belowSubview: slider!)
-        //self.collectionView!.reloadData()
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            layout.itemSize = CGSize(width: self.screenWidth/CGFloat(self.someNumber), height: self.screenWidth/CGFloat(self.someNumber))
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
+            self.collectionView! = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+            self.collectionView!.frame = self.previewView.frame
+            self.collectionView!.dataSource = self
+            self.collectionView!.delegate = self
+            self.collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
+            self.collectionView!.backgroundColor = UIColor.clearColor()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.view.insertSubview(self.collectionView!, belowSubview: self.slider!)
+            }
+        }
     }
     
     func valueChanged(sender: UISlider) {
-        
         let index = (Int)(slider!.value + 0.5);
         slider?.setValue(Float(index), animated: false)
         let number = numbers[index]; // <-- This numeric value you want
         if oldIndex != index{
             //print("sliderIndex:\(index)")
-            print("number: \(number)")
+            print("Slider: \(number)")
             oldIndex = index
-            
             someNumber = number
             createGrid()
         }
@@ -431,59 +364,36 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK: CustomCollectionViewCellDelegate
     
-    func doSnap(sender:AnyObject!) {
-    //func doSnap(cell: CVCell) {
-        
+    func doSnap(sender: AnyObject!) {
         if let videoConnection = stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
             videoConnection.videoOrientation = AVCaptureVideoOrientation.Portrait
             stillImageOutput?.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: {(sampleBuffer, error) in
                 if (sampleBuffer != nil) {
                     let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
                     let dataProvider = CGDataProviderCreateWithCFData(imageData)
-                    
                     //let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentAbsoluteColorimetric)
                     let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
-                    
                     if self.currentDevice?.position == AVCaptureDevicePosition.Front {
                         let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.LeftMirrored)
-                        
                         self.capturedImage.image = image
                         self.capturedImage.clipsToBounds = true
                         //self.capturedImage.contentMode = .ScaleAspectFit
                         print(self.capturedImage.image)
-                        
                         self.slider!.hidden = true
                     }
-                    
                     if self.currentDevice?.position == AVCaptureDevicePosition.Back {
                         let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
-                        
                         self.capturedImage.image = image
                         self.capturedImage.clipsToBounds = true
                         //self.capturedImage.contentMode = .ScaleAspectFit
                         print(self.capturedImage!.image)
-                        
                         self.slider!.hidden = true
                     }
-                    
                     //print(self.someNumber)
-                    
-                    
                 }
             })
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: UICollectionViewDataSource
     
@@ -495,57 +405,34 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+        print("Grid = \(someNumber * someNumber)")
         return someNumber * someNumber
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CVCell
-        
-        // Configure the cell
         cell.backgroundColor = UIColor.clearColor()
         cell.layer.borderColor = UIColor.darkGrayColor().CGColor
         cell.layer.borderWidth = 0.5
         //cell.layer.cornerRadius = 20
-        
-        //cell.shutter?.image = UIImage(named: "shutter")
-        
-        //cell.shutter.alpha = 0.1
         cell.delegate = self
-        //cell.addSubview(capturedImage)
-        //cell.setImage(image)
-        
-        
-        
-        
-
         //cell.label?.text = "\(indexPath.section):\(indexPath.row)"
-        
         return cell
     }
     
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
-    
-//    }
-    
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
-
         if cell.shutter.hidden == true {
             return
         } else {
-            doSnap(CVCell)
+            doSnap(self)
         cell.shutter.hidden = true
-            
         cell.tag = indexPath.row
         //cell.layer.borderColor = UIColor.clearColor().CGColor
-            
         dispatch_async(dispatch_get_main_queue(), {
             let imageView = UIImageView()
             imageView.frame = self.previewView.frame
-            
             self.capturedImage = imageView
-            
             let mask = CALayer()
             mask.contents = UIImage(named: "white.png")!.CGImage
             //mask.frame = cell.bounds
@@ -564,65 +451,18 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             //imageView.clipsToBounds = true
             imageView.contentMode = .ScaleAspectFill
             self.view.addSubview(imageView)
-            
-//            imageView.layer.borderColor = cell.layer.borderColor
-//            imageView.layer.borderWidth = cell.layer.borderWidth * 10
-//            imageView.layer.cornerRadius = cell.layer.cornerRadius
-            
             print("The cell is: \(cell.tag)")
-            
         })
 
         }
     }
     
-    // change background color back when user releases touch
     func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
         //let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
-        
     }
-    
-    //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    //    {
-    //        return CGSize(width: Int(collectionView.frame.size.width)/numbers[3], height: Int(collectionView.frame.size.width)/numbers[3])
-    //    }
-    
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-    }
-    */
-    
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-    }
-    */
-    
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return false
-    }
-    
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-    return false
-    }
-    
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
     
     @IBAction func flashButton(sender: AnyObject) {
-        
         let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
         if avDevice.hasTorch {
             do {
                 _ = try avDevice.lockForConfiguration()
@@ -643,7 +483,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     @IBAction func switchCameraButtonPressed(sender: AnyObject) {
-        
         if currentDevice?.position == AVCaptureDevicePosition.Back {
             flash.enabled = false
         }
@@ -651,45 +490,36 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             flash.enabled = true
         }
         toggleCamera()
-        
-        
     }
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         for subview in view.subviews {
             if subview is UICollectionView {
-                //print(subview)
                 subview.removeFromSuperview()
             }
             if subview is UIImageView {
-                //print(subview)
                 subview.removeFromSuperview()
             }
         }
         slider!.hidden = false
         createGrid()
     }
+    
     @IBAction func saveImageButtonPressed(sender: AnyObject) {
-        
         let image = self.view?.capture()
-        
-        //self.presentActivityVCForImage(image!)
-
         UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-        
         for subview in view.subviews {
             if subview is UICollectionView {
-                //print(subview)
                 subview.removeFromSuperview()
             }
             if subview is UIImageView {
-                //print(subview)
                 subview.removeFromSuperview()
             }
+            slider!.hidden = false
+            createGrid()
         }
-        slider!.hidden = false
-        createGrid()
     }
+    
     @IBAction func zoomPlusPressed(sender: AnyObject) {
         zoomIn()
     }
@@ -697,6 +527,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBAction func zoomMinusPressed(sender: AnyObject) {
         zoomOut()
     }
+    
     @IBAction func gridButtonPressed(sender: AnyObject) {
         if collectionView.hidden == false {
         collectionView.hidden = true
@@ -706,11 +537,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             slider!.hidden = false
         }
     }
-//    func buttonAction(sender: UIButton) {
-//        doSnap(CVCell)
-//    }
+    
+    func buttonAction(sender: UIButton) {
+        for _ in collectionView.visibleCells() as! [CVCell] {
+            doSnap(CVCell)
+        }
+    }
 
-    //FILTERS
+//FILTERS
 //    override func viewDidLayoutSubviews() {
 //        let topMargin = topLayoutGuide.length
 //        
@@ -720,7 +554,4 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         let sourceController = segue.sourceViewController as! MenuTableViewController
         self.title = sourceController.currentItem
     }
-
-
-    
 }

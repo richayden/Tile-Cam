@@ -59,11 +59,11 @@ class MenuTableViewController: UITableViewController {
         return cell
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let menuTableViewController = segue.sourceViewController as! MenuTableViewController
-//        if let selectedIndexPath = menuTableViewController.tableView.indexPathForSelectedRow {
-//            currentItem = menuItems[selectedIndexPath.row]
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let menuTableViewController = segue.sourceViewController as! MenuTableViewController
+        if let selectedIndexPath = menuTableViewController.tableView.indexPathForSelectedRow {
+            currentItem = menuItems[selectedIndexPath.row]
+        }
+    }
     
 }

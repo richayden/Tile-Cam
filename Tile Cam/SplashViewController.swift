@@ -12,13 +12,6 @@ class SplashViewController: UIViewController {
     
     var imageView: UIImageView!
     
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(false)
-//        navigationController?.navigationBarHidden = true
-//        navigationController?.setToolbarHidden(true, animated: false)
-//
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,11 +20,8 @@ class SplashViewController: UIViewController {
         )
         
         imageView = UIImageView(image: UIImage(named: "shutter"))
-        //imageView.center = CGPoint(x: (UIScreen.mainScreen().bounds.size.width), y: (UIScreen.mainScreen().bounds.size.height))
         imageView.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2), (UIScreen.mainScreen().bounds.size.height / 2), (UIScreen.mainScreen().bounds.size.width / 10), (UIScreen.mainScreen().bounds.size.width / 10))
         view.addSubview(imageView)
-        
-        //CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 30, (UIScreen.mainScreen().bounds.size.height) - 80, 60, 60)
         
         UIView.animateWithDuration(0.9 ,
             animations: {

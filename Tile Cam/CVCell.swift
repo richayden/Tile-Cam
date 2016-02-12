@@ -61,22 +61,24 @@ class CVCell: UICollectionViewCell, UIGestureRecognizerDelegate {
             
             shutter.alpha = 0.1
                         
-//            let recognizer = UITapGestureRecognizer(target: self, action:Selector("shutterTap:"))
-//            recognizer.delegate = self
-//            recognizer.numberOfTapsRequired = 1
-//            shutter.addGestureRecognizer(recognizer)
-//            shutter.userInteractionEnabled = false
+            let recognizer = UITapGestureRecognizer(target: self, action:Selector("shutterTap:"))
+            recognizer.delegate = self
+            recognizer.numberOfTapsRequired = 1
+            self.addGestureRecognizer(recognizer)
+            shutter.addGestureRecognizer(recognizer)
+            self.userInteractionEnabled = true
             
             contentView.addSubview(shutter)
     }
     
         
-//    func shutterTap (recognizer: UITapGestureRecognizer) {
-//        //print("tap")
-//        if let delegate_ = self.delegate {
-//            delegate_.doSnap(shutter!)
-//        }
-//    }
+    func shutterTap (recognizer: UITapGestureRecognizer) {
+        //print("tap")
+        if let delegate_ = self.delegate {
+            delegate_.doSnap(self)
+            delegate_.doSnap(shutter)
+        }
+    }
     
     
 
