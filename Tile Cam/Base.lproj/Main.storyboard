@@ -61,12 +61,21 @@
                                     <outlet property="delegate" destination="ib9-pd-yGL" id="yOW-Uu-Iv9"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBP-fu-EmZ">
+                                <rect key="frame" x="265" y="466" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="d4N-tj-NLv"/>
+                                    <constraint firstAttribute="width" constant="70" id="k2p-aY-XwH"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="B7p-hN-i73" firstAttribute="top" secondItem="pBP-fu-EmZ" secondAttribute="bottom" constant="20" id="9dp-MO-CIb"/>
                             <constraint firstItem="G4Y-FP-424" firstAttribute="top" secondItem="xuV-aU-wmb" secondAttribute="bottom" id="FhO-yD-Jey"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="leading" secondItem="G4Y-FP-424" secondAttribute="leading" id="IRg-Yf-M9m"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="leading" secondItem="1We-vk-zIi" secondAttribute="leading" id="KhT-ty-0SP"/>
+                            <constraint firstItem="pBP-fu-EmZ" firstAttribute="centerX" secondItem="1We-vk-zIi" secondAttribute="centerX" id="UdF-cT-Ez7"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="top" secondItem="xuV-aU-wmb" secondAttribute="bottom" id="gyl-Dx-mzB"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="centerX" secondItem="1We-vk-zIi" secondAttribute="centerX" id="lao-fL-rdP"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="width" secondItem="G4Y-FP-424" secondAttribute="width" id="s4f-SI-Fdw"/>
@@ -139,6 +148,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="btn" destination="pBP-fu-EmZ" id="UwY-Yl-jdX"/>
                         <outlet property="cancel" destination="iQV-FG-nhX" id="sDm-zm-LHI"/>
                         <outlet property="collectionView" destination="zhP-Bq-nYa" id="DWO-hh-y2J"/>
                         <outlet property="flash" destination="wEq-h4-LgL" id="Ncd-BZ-Mma"/>

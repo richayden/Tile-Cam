@@ -25,6 +25,8 @@ class CVCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     }
     
     var delegate:CustomCollectionViewCellDelegate?
+    
+    //var tapped: ((CVCell) -> Void)?
    
     //var snapper: UIButton!
     

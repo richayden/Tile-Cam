@@ -18,7 +18,6 @@ class SplashViewController: UIViewController {
         let timer = NSTimer.scheduledTimerWithTimeInterval(
             0.9, target: self, selector: Selector("show"), userInfo: nil, repeats: false
         )
-        
         imageView = UIImageView(image: UIImage(named: "shutter"))
         imageView.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2), (UIScreen.mainScreen().bounds.size.height / 2), (UIScreen.mainScreen().bounds.size.width / 10), (UIScreen.mainScreen().bounds.size.width / 10))
         view.addSubview(imageView)
@@ -32,24 +31,23 @@ class SplashViewController: UIViewController {
                     self.imageView.transform = CGAffineTransformMakeScale(80, 80)
                 }
         })
-        
         navigationController?.navigationBarHidden = true
         navigationController?.setToolbarHidden(true, animated: false)
-        
-        
     }
+    
     override func viewWillDisappear(animated: Bool) {
         navigationController?.navigationBarHidden = false
         navigationController?.setToolbarHidden(false, animated: false)
         
     }
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
     func show() {
-        self.performSegueWithIdentifier("showApp", sender: self)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("showApp", sender: self)
+        }
     }
-    
-    
 }
