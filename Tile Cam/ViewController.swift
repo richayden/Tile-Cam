@@ -46,6 +46,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var flash: UIBarButtonItem!
     @IBOutlet var collectionView: UICollectionView!
     
+    var dummyArray = [CVCell]()
+    
     var someNumber = 1
     var screenWidth: CGFloat!
     //Slider Variables
@@ -72,7 +74,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
+        //collectionView.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
         
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(24)] as Dictionary!
         flash.setTitleTextAttributes(attributes, forState: .Normal)
@@ -105,7 +107,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         btn.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 35, (UIScreen.mainScreen().bounds.size.height) - 129, 70, 70)
         btn.backgroundColor = UIColor.whiteColor()
         //btn.setTitle("Click Me", forState: UIControlState.Normal)
-        btn.addTarget(self, action: "buttonAction:", forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: "buttonAction:", forControlEvents: .TouchDown)
+        btn.addTarget(self, action: "buttonActionEnd:", forControlEvents: .TouchUpInside)
         //btn.tag = 1               // change tag property
         self.view.addSubview(btn) // add to view as subview
         btn.layer.cornerRadius = 35
@@ -113,17 +116,17 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         //btn.layer.borderColor = UIColor.blackColor().CGColor
         
-        btn.layer.shadowColor = UIColor.whiteColor().CGColor
-        btn.layer.shadowOpacity = 1
-        btn.layer.shadowOffset = CGSizeZero
-        btn.layer.shadowRadius = 10
+        //btn.layer.shadowColor = UIColor.whiteColor().CGColor
+        //btn.layer.shadowOpacity = 1
+        //btn.layer.shadowOffset = CGSizeZero
+        //btn.layer.shadowRadius = 10
         
-        let btn2: UIButton = UIButton(frame: CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 30, (UIScreen.mainScreen().bounds.size.height) - 129, 60, 60))
+        let btn2: UIButton = UIButton(frame: CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 128, 58, 58))
         btn2.backgroundColor = UIColor.clearColor()
         btn2.enabled = false
         //btn2.addTarget(self, action: "buttonAction:", forControlEvents: .TouchUpInside)
         self.view.addSubview(btn2) // add to view as subview
-        btn2.layer.cornerRadius = 30
+        btn2.layer.cornerRadius = 29
         btn2.layer.borderWidth = 1.5
         btn2.layer.borderColor = UIColor.blackColor().CGColor
 
@@ -194,6 +197,17 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             return
         }
         self.captureSession = AVCaptureSession()
+        
+//        if someNumber > 0 && someNumber < 4 {
+//            self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+//        }
+//        if someNumber > 3 && someNumber < 8 {
+//            self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
+//        }
+//        if someNumber > 7 {
+//            self.captureSession.sessionPreset = AVCaptureSessionPresetLow
+//        }
+        
         self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         var error: NSError?
@@ -331,6 +345,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func createGrid() {
+        
         for subview in view.subviews {
             if subview is UICollectionView {
                 //print(subview)
@@ -378,33 +393,39 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: CustomCollectionViewCellDelegate
     
     func doSnap(sender: AnyObject!) {
-        if let videoConnection = stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
-            videoConnection.videoOrientation = AVCaptureVideoOrientation.Portrait
-            stillImageOutput?.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: {(sampleBuffer, error) in
-                if (sampleBuffer != nil) {
-                    let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
-                    let dataProvider = CGDataProviderCreateWithCFData(imageData)
-                    //let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentAbsoluteColorimetric)
-                    let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
-                    if self.currentDevice?.position == AVCaptureDevicePosition.Front {
-                        let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.LeftMirrored)
-                        self.capturedImage.image = image
-                        self.capturedImage.clipsToBounds = true
-                        //self.capturedImage.contentMode = .ScaleAspectFit
-                        print(self.capturedImage.image)
-                        self.slider!.hidden = true
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            // do some task
+            
+            if let videoConnection = self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
+                videoConnection.videoOrientation = AVCaptureVideoOrientation.Portrait
+                self.stillImageOutput?.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: {(sampleBuffer, error) in
+                    if (sampleBuffer != nil) {
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            
+                        let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+                        let dataProvider = CGDataProviderCreateWithCFData(imageData)
+                        let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
+                        if self.currentDevice?.position == AVCaptureDevicePosition.Front {
+                            let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.LeftMirrored)
+                            self.capturedImage.image = image
+                            self.capturedImage.clipsToBounds = true
+                            print(self.capturedImage.image)
+                            self.slider!.hidden = true
+                        }
+                        if self.currentDevice?.position == AVCaptureDevicePosition.Back {
+                            let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
+                            self.capturedImage.image = image
+                            self.capturedImage.clipsToBounds = true
+                            print(self.capturedImage!.image)
+                            self.slider!.hidden = true
+                        }
+                        }
                     }
-                    if self.currentDevice?.position == AVCaptureDevicePosition.Back {
-                        let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
-                        self.capturedImage.image = image
-                        self.capturedImage.clipsToBounds = true
-                        //self.capturedImage.contentMode = .ScaleAspectFit
-                        print(self.capturedImage!.image)
-                        self.slider!.hidden = true
-                    }
-                    //print(self.someNumber)
-                }
-            })
+                })
+            }
         }
     }
     
@@ -442,27 +463,18 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         cell.shutter.hidden = true
         btn.hidden = true
         cell.tag = indexPath.row
-        //cell.layer.borderColor = UIColor.clearColor().CGColor
         dispatch_async(dispatch_get_main_queue(), {
             let imageView = UIImageView()
             imageView.frame = self.previewView.frame
             self.capturedImage = imageView
             let mask = CALayer()
             mask.contents = UIImage(named: "white.png")!.CGImage
-            //mask.frame = cell.bounds
-            //mask.bounds = self.capturedImage.frame
             mask.bounds = cell.frame
-            //CGRect(x: 0, y: 0, width: cell.bounds.width, height: cell.bounds.height)
             mask.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             mask.position = cell.center
-            //mask.position = CGPoint(x: cell.frame.origin.x, y: cell.frame.origin.y)
-            //imageView.alpha = 0.6
             imageView.layer.mask = mask
-            //imageView.backgroundColor = UIColor.whiteColor()
             imageView.layer.masksToBounds = true
-            //self.capturedImage = imageView
             imageView.image = self.capturedImage.image
-            //imageView.clipsToBounds = true
             imageView.contentMode = .ScaleAspectFill
             self.view.addSubview(imageView)
             print("The cell is: \(cell.tag)")
@@ -519,6 +531,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         createGrid()
         dummyArray = [CVCell]()
         btn.hidden = false
+        btn.enabled = true
+        btn.backgroundColor = UIColor.whiteColor()
     }
     
     @IBAction func saveImageButtonPressed(sender: AnyObject) {
@@ -535,6 +549,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             createGrid()
             dummyArray = [CVCell]()
             btn.hidden = false
+            btn.enabled = true
+            btn.backgroundColor = UIColor.whiteColor()
         }
     }
     
@@ -559,19 +575,31 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
-    var dummyArray = [CVCell]()
+    func buttonActionEnd(sender: UIButton) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.btn.backgroundColor = UIColor.whiteColor()
+            if self.dummyArray.count < 1 {
+                self.btn.enabled = false
+                self.btn.backgroundColor = UIColor.darkGrayColor()
+            }
+        }
+    }
     
     func buttonAction(sender: UIButton) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.btn.backgroundColor = UIColor.grayColor()
+        }
         
-        let maxCount = someNumber * someNumber
+        //let maxCount = someNumber * someNumber
         
-        var currentCells = collectionView.visibleCells() as! [CVCell]
+        let currentCells = collectionView.visibleCells() as! [CVCell]
         print("currentCells indices:\(dummyArray.indices)")
         
         if dummyArray.isEmpty == true  {
-            dummyArray = currentCells
-            let myCell = dummyArray.randomItem()
-            let index = collectionView.indexPathForCell(myCell)
+            //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.dummyArray = currentCells
+            let myCell = self.dummyArray.randomItem()
+            let index = self.collectionView.indexPathForCell(myCell)
             myCell.tag = index!.row
             
             print("myCell:\(myCell.tag)")
@@ -579,8 +607,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             if myCell.shutter.hidden == false {
                 
                 print("CurrentCells: \(currentCells.count)")
-                doSnap(CVCell)
-                dispatch_async(dispatch_get_main_queue(), {
+                self.doSnap(CVCell)
+                dispatch_async(dispatch_get_main_queue()) {
                     let imageView = UIImageView()
                     imageView.frame = self.previewView.frame
                     self.capturedImage = imageView
@@ -596,13 +624,18 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     self.view.addSubview(imageView)
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
-                })
+                }
             }
-            
+            self.view.layoutIfNeeded()
+        //}, completion: nil)
+        
         } else {
             
-            let myCell = dummyArray.randomItem()
-            let index = collectionView.indexPathForCell(myCell)
+            //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                
+            
+            let myCell = self.dummyArray.randomItem()
+            let index = self.collectionView.indexPathForCell(myCell)
             myCell.tag = index!.row
             
             print("myCell:\(myCell.tag)")
@@ -610,9 +643,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             if myCell.shutter.hidden == false {
                 
                 print("CurrentCells: \(currentCells.count)")
-                doSnap(CVCell)
+                self.doSnap(CVCell)
 
-                dispatch_async(dispatch_get_main_queue(), {
+                dispatch_async(dispatch_get_main_queue()) {
                     let imageView = UIImageView()
                     imageView.frame = self.previewView.frame
                     self.capturedImage = imageView
@@ -628,8 +661,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     self.view.addSubview(imageView)
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
-                })
+                }
             }
+                self.view.layoutIfNeeded()
+                self.view.setNeedsDisplay()
+                //}, completion: nil)
             
         }
     }

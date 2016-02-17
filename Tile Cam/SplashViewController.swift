@@ -15,6 +15,7 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let timer = NSTimer.scheduledTimerWithTimeInterval(
             0.9, target: self, selector: Selector("show"), userInfo: nil, repeats: false
         )
@@ -22,6 +23,9 @@ class SplashViewController: UIViewController {
         imageView.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2), (UIScreen.mainScreen().bounds.size.height / 2), (UIScreen.mainScreen().bounds.size.width / 10), (UIScreen.mainScreen().bounds.size.width / 10))
         view.addSubview(imageView)
         
+        dispatch_async(dispatch_get_main_queue()) {
+        
+
         UIView.animateWithDuration(0.9 ,
             animations: {
                 self.imageView.transform = CGAffineTransformMakeScale(-30, -30)
@@ -31,8 +35,10 @@ class SplashViewController: UIViewController {
                     self.imageView.transform = CGAffineTransformMakeScale(80, 80)
                 }
         })
+        }
         navigationController?.navigationBarHidden = true
         navigationController?.setToolbarHidden(true, animated: false)
+            
     }
     
     override func viewWillDisappear(animated: Bool) {
