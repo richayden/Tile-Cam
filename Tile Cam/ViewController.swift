@@ -48,6 +48,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     var dummyArray = [CVCell]()
     
+    var groutWidth: Int?
+    var tileCorner: Int?
     var someNumber = 1
     var screenWidth: CGFloat!
     //Slider Variables
@@ -253,13 +255,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
-    func presentActivityVCForImage(image: UIImage) {
-        self.presentViewController(
-            UIActivityViewController(activityItems: [image], applicationActivities: nil),
-            animated: true,
-            completion: nil
-        )
-    }
+//    func presentActivityVCForImage(image: UIImage) {
+//        self.presentViewController(
+//            UIActivityViewController(activityItems: [image], applicationActivities: nil),
+//            animated: true,
+//            completion: nil
+//        )
+//    }
     //FILTERS
 //    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
 //        guard let filter = Filters[FilterNames[filtersControl.selectedSegmentIndex]] else
@@ -343,7 +345,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         collectionView!.frame = previewView.frame
         previewLayer!.frame = previewView.bounds
     }
-    
+
     func createGrid() {
         
         for subview in view.subviews {
@@ -445,9 +447,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CVCell
+        groutWidth = someNumber
         cell.backgroundColor = UIColor.clearColor()
         cell.layer.borderColor = UIColor.darkGrayColor().CGColor
-        cell.layer.borderWidth = 0.5
+        cell.layer.borderWidth = CGFloat(groutWidth!)
         //cell.layer.cornerRadius = 20
         cell.delegate = self
         //cell.label?.text = "\(indexPath.section):\(indexPath.row)"
@@ -476,7 +479,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             imageView.layer.masksToBounds = true
             imageView.image = self.capturedImage.image
             imageView.contentMode = .ScaleAspectFill
-            self.view.addSubview(imageView)
+            //self.view.addSubview(imageView)
+            self.view.insertSubview(imageView, belowSubview: collectionView)
             print("The cell is: \(cell.tag)")
         })
 
