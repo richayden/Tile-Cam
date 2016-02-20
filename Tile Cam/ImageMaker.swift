@@ -14,7 +14,7 @@ extension UIView {
                 
         //UIGraphicsBeginImageContextWithOptions(CGSizeMake(1224, 1224), false, 0.0)
         
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(UIScreen.mainScreen().bounds.size.width * 3, UIScreen.mainScreen().bounds.size.width * 3), false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(UIScreen.mainScreen().bounds.size.width * 3, UIScreen.mainScreen().bounds.size.width * 3), false, 0.0)
         
         
         //UIGraphicsBeginImageContextWithOptions(CGSize(width: 1224, height: 1224), false, 0)

@@ -56,19 +56,22 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var BlueSlider: UISlider!
     @IBOutlet weak var DisplayingLabel: UILabel!
     
+    @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var radiusLabel: UILabel!
+    
     @IBOutlet weak var doneColorButton: UIButton!
     @IBOutlet weak var ResetButton: UIButton!
     
     @IBOutlet weak var groutWidthSlider: UISlider!
     
     @IBOutlet weak var groutWidthLabel: UILabel!
-    var RedColor : Float = 0
-    var GreenColor : Float = 0
-    var BlueColor : Float = 0
+    var RedColor: Float = 0
+    var GreenColor: Float = 0
+    var BlueColor: Float = 0
     var groutColor: UIColor!
 
     var dummyArray = [CVCell]()
-    
+    var groutRadius: Float = 0.0
     var groutWidth: Float = 0.5
     var tileCorner: Int?
     var someNumber = 1
@@ -231,7 +234,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 //            self.captureSession.sessionPreset = AVCaptureSessionPresetLow
 //        }
         
-        self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
+        self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         var error: NSError?
         var input: AVCaptureDeviceInput!
@@ -388,9 +391,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             self.collectionView!.delegate = self
             self.collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
             self.collectionView!.backgroundColor = UIColor.clearColor()
-            //dispatch_async(dispatch_get_main_queue()) {
+            dispatch_async(dispatch_get_main_queue()) {
                 self.view.insertSubview(self.collectionView!, belowSubview: self.slider!)
-            //}
+            }
             self.view.setNeedsLayout()
         //}
     }
@@ -459,7 +462,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return 1
     }
     
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         print("Grid = \(someNumber * someNumber)")
@@ -468,7 +470,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CVCell
-        //groutWidth = someNumber
         cell.backgroundColor = UIColor.clearColor()
         if groutColor != nil {
             cell.layer.borderColor = groutColor.CGColor
@@ -476,7 +477,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             cell.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
         cell.layer.borderWidth = CGFloat(groutWidth)
-        //cell.layer.cornerRadius = 20
+        cell.layer.cornerRadius = CGFloat(groutRadius)
         cell.delegate = self
         //cell.label?.text = "\(indexPath.section):\(indexPath.row)"
         return cell
@@ -508,7 +509,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             self.view.insertSubview(imageView, belowSubview: collectionView)
             print("The cell is: \(cell.tag)")
         })
-
         }
     }
     
@@ -592,13 +592,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     @IBAction func gridButtonPressed(sender: AnyObject) {
-        
-        
         if collectionView.hidden == false {
             addGridSettingsView(self)
             btn.enabled = false
-            
-        collectionView.hidden = true
+            collectionView.hidden = true
             slider!.hidden = true
         } else {
             removeGridSettingsView()
@@ -630,13 +627,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         gridSettingsView.removeFromSuperview()
     }
     
-    
     func buttonAction(sender: UIButton) {
         dispatch_async(dispatch_get_main_queue()) {
             self.btn.backgroundColor = UIColor.grayColor()
         }
-        
-        //let maxCount = someNumber * someNumber
         
         let currentCells = collectionView.visibleCells() as! [CVCell]
         print("currentCells indices:\(dummyArray.indices)")
@@ -712,17 +706,21 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 self.view.layoutIfNeeded()
                 self.view.setNeedsDisplay()
                 //}, completion: nil)
-            
         }
     }
     
     @IBAction func groutSliderValueChanged(sender: UISlider) {
-        
-        var selectedValue = Float(sender.value)
-        var roundedValue: Float = roundf(selectedValue / 0.5) * 0.5
-        
-        groutWidthLabel.text = "Width: \(String(stringInterpolationSegment: roundedValue))"
+        let selectedValue = Float(sender.value)
+        let roundedValue: Float = roundf(selectedValue / 0.5) * 0.5
+        groutWidthLabel.text = "W: \(String(stringInterpolationSegment: roundedValue))"
         groutWidth = roundedValue
+    }
+    
+    @IBAction func radiusSliderValueChanged(sender: UISlider) {
+        let selectedValue = Float(sender.value)
+        let roundedValue: Float = roundf(selectedValue / 1.0) * 1.0
+        radiusLabel.text = "R: \(String(stringInterpolationSegment: roundedValue))"
+        groutRadius = roundedValue
     }
     
     @IBAction func RedSliderAction(sender: UISlider) {
@@ -738,7 +736,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func ChangeDisplayLabelColor(){
-        doneColorButton.backgroundColor = UIColor(red: CGFloat(RedColor), green: CGFloat(GreenColor), blue: CGFloat(BlueColor), alpha: 1.0)
+        DisplayingLabel.backgroundColor = UIColor(red: CGFloat(RedColor), green: CGFloat(GreenColor), blue: CGFloat(BlueColor), alpha: 1.0)
         changeLabelNumbers()
     }
     
@@ -753,12 +751,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         let RoundedRed = String(format: "%0.0f", (RedColor * 255))
         let RoundedGreen = String(format: "%0.0f", (GreenColor * 255))
         let RoundedBlue = String(format: "%0.0f", (BlueColor * 255))
-        
-        RedLabel.text = "Red: \(RoundedRed)"
-        GreenLabel.text = "Green: \(RoundedGreen)"
-        BlueLabel.text = "Blue: \(RoundedBlue)"
-        
-        
+        RedLabel.text = "R: \(RoundedRed)"
+        GreenLabel.text = "G: \(RoundedGreen)"
+        BlueLabel.text = "B: \(RoundedBlue)"
     }
     
     @IBAction func doneColorButtonPressed(sender: AnyObject) {
@@ -766,27 +761,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         collectionView.hidden = false
         slider!.hidden = false
         btn.enabled = true
-        groutColor = doneColorButton.backgroundColor
+        groutColor = DisplayingLabel.backgroundColor
         createGrid()
     }
-    @IBAction func ResetButtonAction(sender: UIButton) {
-        ResettingSliders()
-        
-        
-    }
     
-    func ResettingSliders(){
-        
-        RedSlider.value = 0.5
-        GreenSlider.value = 0.5
-        BlueSlider.value = 0.5
-        
-        RedLabel.text = String("Red: 0")
-        GreenLabel.text = String("Green: 0")
-        BlueLabel.text = String("Blue: 0")
-        
-    }
-
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         let sourceController = segue.sourceViewController as! MenuTableViewController
         self.title = sourceController.currentItem
