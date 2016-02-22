@@ -18,12 +18,13 @@ class SplashViewController: UIViewController {
         
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(
-            0.75, target: self, selector: Selector("show"), userInfo: nil, repeats: false
+            1.25, target: self, selector: Selector("show"), userInfo: nil, repeats: false
         )
-        
+        //dispatch_async(dispatch_get_main_queue()) {
         splashView.addTileCamSplashAnimationCompletionBlock { (finished) -> Void in
             print("Animated")
         }
+        //}
         navigationController?.navigationBarHidden = true
         navigationController?.setToolbarHidden(true, animated: false)
             

@@ -206,13 +206,9 @@ class CustomView: UIView {
 	}
 	
 	func addTileCamSplashAnimationCompletionBlock(completionBlock: ((finished: Bool) -> Void)?){
-		addTileCamSplashAnimationTotalDuration(0.75, completionBlock:completionBlock)
-	}
-	
-	func addTileCamSplashAnimationTotalDuration(totalDuration: CFTimeInterval, completionBlock: ((finished: Bool) -> Void)?){
 		if completionBlock != nil{
 			let completionAnim = CABasicAnimation(keyPath:"completionAnim")
-			completionAnim.duration = totalDuration
+			completionAnim.duration = 0.998
 			completionAnim.delegate = self
 			completionAnim.setValue("tileCamSplash", forKey:"animId")
 			completionAnim.setValue(false, forKey:"needEndAnim")
@@ -226,9 +222,9 @@ class CustomView: UIView {
 		
 		////Tile animation
 		let TileHiddenAnim      = CAKeyframeAnimation(keyPath:"hidden")
-		TileHiddenAnim.values   = [true, true, false]
-		TileHiddenAnim.keyTimes = [0, 0.862, 1]
-		TileHiddenAnim.duration = 1 * totalDuration
+		TileHiddenAnim.values   = [true, false, false]
+		TileHiddenAnim.keyTimes = [0, 0.652, 1]
+		TileHiddenAnim.duration = 0.998
 		
 		let TileTileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([TileHiddenAnim], fillMode:fillMode)
 		layers["Tile"]?.addAnimation(TileTileCamSplashAnim, forKey:"TileTileCamSplashAnim")
@@ -236,14 +232,15 @@ class CustomView: UIView {
 		////Shutter animation
 		let ShutterTransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		ShutterTransformAnim.values   = [NSValue(CATransform3D: CATransform3DIdentity), 
-			 NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(80, 80, 100), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1)))]
-		ShutterTransformAnim.keyTimes = [0, 1]
-		ShutterTransformAnim.duration = totalDuration
+			 NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(80, 80, 80), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1))), 
+			 NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(80, 80, 80), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1)))]
+		ShutterTransformAnim.keyTimes = [0, 0.51, 1]
+		ShutterTransformAnim.duration = 0.998
 		
 		let ShutterOpacityAnim      = CAKeyframeAnimation(keyPath:"opacity")
-		ShutterOpacityAnim.values   = [0, 1]
-		ShutterOpacityAnim.keyTimes = [0, 1]
-		ShutterOpacityAnim.duration = totalDuration
+		ShutterOpacityAnim.values   = [0, 1, 1]
+		ShutterOpacityAnim.keyTimes = [0, 0.614, 1]
+		ShutterOpacityAnim.duration = 0.998
 		
 		let ShutterTileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([ShutterTransformAnim, ShutterOpacityAnim], fillMode:fillMode)
 		layers["Shutter"]?.addAnimation(ShutterTileCamSplashAnim, forKey:"ShutterTileCamSplashAnim")
