@@ -234,7 +234,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 //            self.captureSession.sessionPreset = AVCaptureSessionPresetLow
 //        }
         
-        self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+        self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         var error: NSError?
         var input: AVCaptureDeviceInput!
@@ -470,6 +470,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CVCell
+        //let borderWidth = groutWidth
+        //cell.frame = CGRectInset(cell.frame, -CGFloat(borderWidth), -CGFloat(borderWidth))
         cell.backgroundColor = UIColor.clearColor()
         if groutColor != nil {
             cell.layer.borderColor = groutColor.CGColor
@@ -477,7 +479,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             cell.layer.borderColor = UIColor.lightGrayColor().CGColor
         }
         cell.layer.borderWidth = CGFloat(groutWidth)
-        cell.layer.cornerRadius = CGFloat(groutRadius)
+        //cell.layer.cornerRadius = CGFloat(groutRadius)
         cell.delegate = self
         //cell.label?.text = "\(indexPath.section):\(indexPath.row)"
         return cell
@@ -714,6 +716,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         let roundedValue: Float = roundf(selectedValue / 0.5) * 0.5
         groutWidthLabel.text = "W: \(String(stringInterpolationSegment: roundedValue))"
         groutWidth = roundedValue
+        //collectionView.layer.borderWidth = CGFloat(groutWidth)
     }
     
     @IBAction func radiusSliderValueChanged(sender: UISlider) {

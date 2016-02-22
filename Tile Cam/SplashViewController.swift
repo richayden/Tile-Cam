@@ -10,31 +10,19 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
-    var imageView: UIImageView!
+    //var imageView: UIImageView!
     
+    @IBOutlet var splashView: CustomView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         let timer = NSTimer.scheduledTimerWithTimeInterval(
-            0.9, target: self, selector: Selector("show"), userInfo: nil, repeats: false
+            0.75, target: self, selector: Selector("show"), userInfo: nil, repeats: false
         )
-        imageView = UIImageView(image: UIImage(named: "shutter"))
-        imageView.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2), (UIScreen.mainScreen().bounds.size.height / 2), (UIScreen.mainScreen().bounds.size.width / 10), (UIScreen.mainScreen().bounds.size.width / 10))
-        view.addSubview(imageView)
         
-        dispatch_async(dispatch_get_main_queue()) {
-        
-
-        UIView.animateWithDuration(0.9 ,
-            animations: {
-                self.imageView.transform = CGAffineTransformMakeScale(-30, -30)
-            },
-            completion: { finish in
-                UIView.animateWithDuration(0.9){
-                    self.imageView.transform = CGAffineTransformMakeScale(80, 80)
-                }
-        })
+        splashView.addTileCamSplashAnimationCompletionBlock { (finished) -> Void in
+            print("Animated")
         }
         navigationController?.navigationBarHidden = true
         navigationController?.setToolbarHidden(true, animated: false)
@@ -57,3 +45,17 @@ class SplashViewController: UIViewController {
         }
     }
 }
+
+//extension UIImageView {
+//    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+//        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//        rotateAnimation.fromValue = 0.0
+//        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+//        rotateAnimation.duration = duration
+//        
+//        if let delegate: AnyObject = completionDelegate {
+//            rotateAnimation.delegate = delegate
+//        }
+//        self.layer.addAnimation(rotateAnimation, forKey: nil)
+//    }
+//}
