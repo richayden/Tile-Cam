@@ -131,12 +131,10 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="9aM-h2-HHX">
-                            <rect key="frame" x="180" y="4" width="240" height="36"/>
+                        <view key="titleView" contentMode="scaleToFill" id="0cM-CL-1dR" customClass="TileLogoView" customModule="Tile_Cam" customModuleProvider="target">
+                            <rect key="frame" x="255" y="10" width="90" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                            <state key="normal" title="Tile Cam"/>
-                        </button>
+                        </view>
                         <rightBarButtonItems>
                             <barButtonItem title="Item" id="02o-oj-JCI">
                                 <connections>

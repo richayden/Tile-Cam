@@ -36,6 +36,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var doneColorButton: UIButton!
     @IBOutlet weak var groutWidthSlider: UISlider!
     @IBOutlet weak var groutWidthLabel: UILabel!
+    
     // MARK: - Public API
     var RedColor: Float = 0
     var GreenColor: Float = 0
@@ -70,7 +71,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(24)] as Dictionary!
         flash.setTitleTextAttributes(attributes, forState: .Normal)
         flash.title = String.fontAwesomeIconWithName(.SunO)
@@ -105,10 +106,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         btn2.layer.cornerRadius = 29
         btn2.layer.borderWidth = 1.5
         btn2.layer.borderColor = UIColor.blackColor().CGColor
-
+        
         capturedImage?.image = UIImage(named: "shutter")
         screenWidth = UIScreen.mainScreen().bounds.size.width
-        
+        // Grid Slider
         slider = UISlider(frame: CGRectMake(20, screenWidth + 54, screenWidth - 40, 50))
         self.view.addSubview(slider!)
         let numberOfSteps = Float(numbers.count - 1)
@@ -118,14 +119,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         slider!.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
         slider!.minimumTrackTintColor = UIColor.whiteColor()
         slider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-        
-        RedSlider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-        GreenSlider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-        BlueSlider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-        groutWidthSlider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-        
+
         createGrid()
-        
+        // AV
         let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as! [AVCaptureDevice]
         
         for device in devices {
@@ -214,32 +210,28 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 subview.removeFromSuperview()
             }
         }
-        //let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        //dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            layout.itemSize = CGSize(width: self.screenWidth/CGFloat(self.someNumber), height: self.screenWidth/CGFloat(self.someNumber))
-            layout.minimumInteritemSpacing = 0
-            layout.minimumLineSpacing = 0
-            self.collectionView! = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-            self.collectionView!.frame = self.previewView.frame
-            self.collectionView!.dataSource = self
-            self.collectionView!.delegate = self
-            self.collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
-            self.collectionView!.backgroundColor = UIColor.clearColor()
-            dispatch_async(dispatch_get_main_queue()) {
-                self.view.insertSubview(self.collectionView!, belowSubview: self.slider!)
-            }
-            self.view.setNeedsLayout()
-        //}
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: self.screenWidth/CGFloat(self.someNumber), height: self.screenWidth/CGFloat(self.someNumber))
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        self.collectionView! = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        self.collectionView!.frame = self.previewView.frame
+        self.collectionView!.dataSource = self
+        self.collectionView!.delegate = self
+        self.collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
+        self.collectionView!.backgroundColor = UIColor.clearColor()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.view.insertSubview(self.collectionView!, belowSubview: self.slider!)
+        }
+        self.view.setNeedsLayout()
     }
     
     func valueChanged(sender: UISlider) {
         let index = (Int)(slider!.value + 0.5);
         slider?.setValue(Float(index), animated: false)
-        let number = numbers[index]; // <-- This numeric value you want
+        let number = numbers[index]
         if oldIndex != index{
-            //print("sliderIndex:\(index)")
             print("Slider: \(number)")
             oldIndex = index
             someNumber = number
@@ -257,7 +249,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            // do some task
             
             if let videoConnection = self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
                 videoConnection.videoOrientation = AVCaptureVideoOrientation.Portrait
@@ -266,23 +257,23 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             
-                        let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
-                        let dataProvider = CGDataProviderCreateWithCFData(imageData)
-                        let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
-                        if self.currentDevice?.position == AVCaptureDevicePosition.Front {
-                            let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.LeftMirrored)
-                            self.capturedImage.image = image
-                            self.capturedImage.clipsToBounds = true
-                            print(self.capturedImage.image)
-                            self.slider!.hidden = true
-                        }
-                        if self.currentDevice?.position == AVCaptureDevicePosition.Back {
-                            let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
-                            self.capturedImage.image = image
-                            self.capturedImage.clipsToBounds = true
-                            print(self.capturedImage!.image)
-                            self.slider!.hidden = true
-                        }
+                            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+                            let dataProvider = CGDataProviderCreateWithCFData(imageData)
+                            let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
+                            if self.currentDevice?.position == AVCaptureDevicePosition.Front {
+                                let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.LeftMirrored)
+                                self.capturedImage.image = image
+                                self.capturedImage.clipsToBounds = true
+                                print(self.capturedImage.image)
+                                self.slider!.hidden = true
+                            }
+                            if self.currentDevice?.position == AVCaptureDevicePosition.Back {
+                                let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
+                                self.capturedImage.image = image
+                                self.capturedImage.clipsToBounds = true
+                                print(self.capturedImage!.image)
+                                self.slider!.hidden = true
+                            }
                         }
                     }
                 })
@@ -308,7 +299,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             
             print("myCell:\(myCell.tag)")
             
-            if myCell.shutter.hidden == false {
+            //if myCell.shutter.hidden == false {
                 
                 print("CurrentCells: \(currentCells.count)")
                 self.doSnap(CVCell)
@@ -329,7 +320,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
                 }
-            }
+            //}
             self.view.layoutIfNeeded()
             //}, completion: nil)
             
@@ -344,7 +335,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             
             print("myCell:\(myCell.tag)")
             
-            if myCell.shutter.hidden == false {
+            //if myCell.shutter.hidden == false {
                 
                 print("CurrentCells: \(currentCells.count)")
                 self.doSnap(CVCell)
@@ -366,7 +357,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
                 }
-            }
+            //}
             self.view.layoutIfNeeded()
             self.view.setNeedsDisplay()
             //}, completion: nil)
@@ -385,12 +376,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK: - UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         print("Grid = \(someNumber * someNumber)")
         return someNumber * someNumber
     }
@@ -439,10 +428,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             print("The cell is: \(cell.tag)")
         })
         }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        //let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
     }
     
     // MARK: - Toolbar Buttons
@@ -649,7 +634,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         slider!.hidden = false
         btn.enabled = true
         groutColor = DisplayingLabel.backgroundColor
-        CVCell().layer.borderWidth = CGFloat(groutWidth)
+        collectionView.setNeedsLayout()
         CVCell().setNeedsLayout()
         //createGrid()
     }
