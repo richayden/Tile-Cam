@@ -131,6 +131,7 @@
 				9BEF974F1C3C30C100C4CF36 /* Resources */,
 				C4703B774A28BDC19AB1F625 /* Embed Pods Frameworks */,
 				8B9B67E6D568DEF98486E7CD /* Copy Pods Resources */,
+				9B0101931C7D15180047F748 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -204,6 +205,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tile Cam/Pods-Tile Cam-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9B0101931C7D15180047F748 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" c36addbe1b44d9d51e7489ad0b28ee29051541bc e3c389f6ef0b3b9adb32f437d58d19974fac0dd82997c33e3097e1c8dd86f175";
 		};
 		AD6B6884FE29D3218C3AF776 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -368,6 +382,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tile",
+					Cam,
+					"$(PROJECT_DIR)/Tile",
+					Cam,
+				);
 				INFOPLIST_FILE = "Tile Cam/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richayden.Tile-Cam";
@@ -384,6 +405,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tile",
+					Cam,
+					"$(PROJECT_DIR)/Tile",
+					Cam,
+				);
 				INFOPLIST_FILE = "Tile Cam/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richayden.Tile-Cam";

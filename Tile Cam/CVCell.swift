@@ -70,7 +70,7 @@ class CVCell: UICollectionViewCell, UIGestureRecognizerDelegate {
             shutter.addGestureRecognizer(recognizer)
             self.userInteractionEnabled = true
             
-            contentView.addSubview(shutter)
+            //contentView.addSubview(shutter)
     }
     
         

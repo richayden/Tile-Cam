@@ -13,9 +13,9 @@ class MenuTableViewController: UITableViewController {
     
     var iconText = ["\u{f185}", "\u{f021}", "\u{f00a}", "\u{f059}", "\u{f192}", "\u{f12d}", "\u{f002}", "\u{f03e}"]
         
-    var menuItems = ["Torch Light On/Off:", "Toggle Camera:", "Grid On/Off:", "Help:", "Grid Slider", "Clear:", "Zoom In/Out:", "Save Image:"]
+    var menuItems = ["Torch Light On/Off:", "Toggle Camera:", "Grout Settings:", "Help:", "Grid Sizer", "Clear:", "Zoom In/Out:", "Save Image:"]
     
-    var subtitles = ["Turn the torch on/off in low light situations or to vary light of captured tiles.", "Toggle between front and back facing cameras.", "Turn the tile grid off for clear view. Grid must be on to snap a tile.", "You are here.", "Slide to change tile grid size. For smaller tile grids a stylus is recommended.", "Clears the current tile grid.", "Zooms the camera lens in/out.", "Save a completed tiled image to photo library."]
+    var subtitles = ["Turn the torch on/off in low light situations or to vary light of captured tiles.", "Toggle between front and back facing cameras.", "Add grout to your tiles. Select color and line width.", "You are here.", "Slide to change tile grid size.", "Clears the current tile grid.", "Zooms the camera in/out.", "Save tile image to photo library."]
     var currentItem = "Done"
     
     override func viewDidLoad() {

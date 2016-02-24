@@ -24,6 +24,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var switchCamera: UIBarButtonItem!
     @IBOutlet weak var flash: UIBarButtonItem!
+    @IBOutlet weak var share: UIBarButtonItem!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var gridSettingsView: UIView!
     @IBOutlet weak var RedLabel: UILabel!
@@ -72,6 +73,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gridButton.enabled = false
+        share.enabled = false
+        
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(24)] as Dictionary!
         flash.setTitleTextAttributes(attributes, forState: .Normal)
         flash.title = String.fontAwesomeIconWithName(.SunO)
@@ -79,8 +83,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         switchCamera.title = String.fontAwesomeIconWithName(.Refresh)
         cancel.setTitleTextAttributes(attributes, forState: .Normal)
         cancel.title = String.fontAwesomeIconWithName(.Eraser)
-        save.setTitleTextAttributes(attributes, forState: .Normal)
-        save.title = String.fontAwesomeIconWithName(.Photo)
+//        save.setTitleTextAttributes(attributes, forState: .Normal)
+//        save.title = String.fontAwesomeIconWithName(.Photo)
+        share.setTitleTextAttributes(attributes, forState: .Normal)
+        share.title = String.fontAwesomeIconWithName(.Share)
         gridButton.setTitleTextAttributes(attributes, forState: .Normal)
         gridButton.title = String.fontAwesomeIconWithName(.Th)
         zoomPlus.setTitleTextAttributes(attributes, forState: .Normal)
@@ -183,14 +189,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
-    func presentActivityVCForImage(image: UIImage) {
-        self.presentViewController(
-            UIActivityViewController(activityItems: [image], applicationActivities: nil),
-            animated: true,
-            completion: nil
-        )
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         capturedImage = UIImageView(frame: previewView.frame)
@@ -287,10 +285,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             self.btn.backgroundColor = UIColor.grayColor()
         }
         
-        let currentCells = collectionView.visibleCells() as! [CVCell]
-        print("currentCells indices:\(dummyArray.indices)")
+        let currentCells = self.collectionView.visibleCells() as! [CVCell]
+        print("currentCells indices:\(self.dummyArray.indices)")
         
-        if dummyArray.isEmpty == true  {
+        if self.dummyArray.isEmpty == true  {
             //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.dummyArray = currentCells
             let myCell = self.dummyArray.randomItem()
@@ -316,6 +314,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     imageView.layer.masksToBounds = true
                     imageView.image = self.capturedImage.image
                     imageView.contentMode = .ScaleAspectFill
+                    myCell.layer.borderColor = UIColor.clearColor().CGColor
                     self.view.insertSubview(imageView, belowSubview: self.collectionView)
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
@@ -323,11 +322,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             //}
             self.view.layoutIfNeeded()
             //}, completion: nil)
-            
         } else {
-            
             //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            
             
             let myCell = self.dummyArray.randomItem()
             let index = self.collectionView.indexPathForCell(myCell)
@@ -353,6 +349,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     imageView.layer.masksToBounds = true
                     imageView.image = self.capturedImage.image
                     imageView.contentMode = .ScaleAspectFill
+                    myCell.layer.borderColor = UIColor.clearColor().CGColor
                     self.view.insertSubview(imageView, belowSubview: self.collectionView)
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
@@ -370,6 +367,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             if self.dummyArray.count < 1 {
                 self.btn.enabled = false
                 self.btn.backgroundColor = UIColor.darkGrayColor()
+                self.gridButton.enabled = true
+                self.share.enabled = true
+                self.zoomMinus.enabled = false
+                self.zoomPlus.enabled = false
+                self.switchCamera.enabled = false
+                self.flash.enabled = false
             }
         }
     }
@@ -401,36 +404,38 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
-        if cell.shutter.hidden == true {
-            return
-        } else {
-            doSnap(self)
-        cell.shutter.hidden = true
-        btn.hidden = true
-        cell.tag = indexPath.row
-        dispatch_async(dispatch_get_main_queue(), {
-            let imageView = UIImageView()
-            imageView.frame = self.previewView.frame
-            self.capturedImage = imageView
-            let mask = CALayer()
-            mask.contents = UIImage(named: "white.png")!.CGImage
-            mask.bounds = cell.frame
-            mask.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            mask.position = cell.center
-            imageView.layer.mask = mask
-            imageView.layer.masksToBounds = true
-            imageView.image = self.capturedImage.image
-            imageView.contentMode = .ScaleAspectFill
-            //self.view.addSubview(imageView)
-            self.view.insertSubview(imageView, belowSubview: collectionView)
-            print("The cell is: \(cell.tag)")
-        })
-        }
-    }
+//    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
+//        if cell.shutter.hidden == true {
+//            return
+//        } else {
+//            doSnap(self)
+//        cell.shutter.hidden = true
+//        btn.hidden = true
+//        cell.tag = indexPath.row
+//        dispatch_async(dispatch_get_main_queue(), {
+//            let imageView = UIImageView()
+//            imageView.frame = self.previewView.frame
+//            self.capturedImage = imageView
+//            let mask = CALayer()
+//            mask.contents = UIImage(named: "white.png")!.CGImage
+//            mask.bounds = cell.frame
+//            mask.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//            mask.position = cell.center
+//            imageView.layer.mask = mask
+//            imageView.layer.masksToBounds = true
+//            imageView.image = self.capturedImage.image
+//            imageView.contentMode = .ScaleAspectFill
+//            //self.view.addSubview(imageView)
+//            cell.layer.borderColor = UIColor.clearColor().CGColor
+//            self.view.insertSubview(imageView, belowSubview: collectionView)
+//            print("The cell is: \(cell.tag)")
+//        })
+//        }
+//    }
     
     // MARK: - Toolbar Buttons
+    //Torch
     @IBAction func flashButton(sender: AnyObject) {
         let avDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         if avDevice.hasTorch {
@@ -451,7 +456,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             avDevice.unlockForConfiguration()
         }
     }
-    
+    //Toggle cameras
     @IBAction func switchCameraButtonPressed(sender: AnyObject) {
         if currentDevice?.position == AVCaptureDevicePosition.Back {
             flash.enabled = false
@@ -483,7 +488,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         currentDevice = newDevice
         captureSession.commitConfiguration()
     }
-
+    //Cancel
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         for subview in view.subviews {
             if subview is UICollectionView {
@@ -499,10 +504,45 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         btn.hidden = false
         btn.enabled = true
         btn.backgroundColor = UIColor.whiteColor()
+        self.gridButton.enabled = false
+        self.save.enabled = false
+        self.zoomMinus.enabled = true
+        self.zoomPlus.enabled = true
+        self.switchCamera.enabled = true
+        self.flash.enabled = true
+        groutColor = UIColor.lightGrayColor()
+        groutWidth = 0.5
+    }
+    //Save
+//    @IBAction func saveImageButtonPressed(sender: AnyObject) {
+//        let image = self.view?.capture()
+//        
+//        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+//        for subview in view.subviews {
+//            if subview is UICollectionView {
+//                subview.removeFromSuperview()
+//            }
+//            if subview is UIImageView {
+//                subview.removeFromSuperview()
+//            }
+//            slider!.hidden = false
+//            createGrid()
+//            dummyArray = [CVCell]()
+//            btn.hidden = false
+//            btn.enabled = true
+//            btn.backgroundColor = UIColor.whiteColor()
+//        }
+//    }
+    //Share
+    func presentActivityVCForImage(image: UIImage) {
+        self.presentViewController(
+            UIActivityViewController(activityItems: [image], applicationActivities: nil), animated: true, completion: nil)
     }
     
-    @IBAction func saveImageButtonPressed(sender: AnyObject) {
+    @IBAction func shareButtonPressed(sender: AnyObject) {
         let image = self.view?.capture()
+        self.presentActivityVCForImage(image!)
+        
         UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
         for subview in view.subviews {
             if subview is UICollectionView {
@@ -519,7 +559,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             btn.backgroundColor = UIColor.whiteColor()
         }
     }
-    
+    //Zoom
     @IBAction func zoomPlusPressed(sender: AnyObject) {
         zoomIn()
     }
@@ -584,7 +624,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func removeGridSettingsView() {
         gridSettingsView.removeFromSuperview()
     }
-    
+    //Grout width
     @IBAction func groutSliderValueChanged(sender: UISlider) {
         let selectedValue = Float(sender.value)
         let roundedValue: Float = roundf(selectedValue / 0.5) * 0.5
@@ -592,7 +632,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         groutWidth = roundedValue
         //collectionView.layer.borderWidth = CGFloat(groutWidth)
     }
-    
+    //Grout color sliders
     @IBAction func RedSliderAction(sender: UISlider) {
         ChangeColors()
     }
@@ -627,16 +667,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     @IBAction func doneColorButtonPressed(sender: AnyObject) {
-        
-        //self.collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
         gridSettingsView.removeFromSuperview()
         //collectionView.hidden = false
-        slider!.hidden = false
+        slider!.hidden = true
         btn.enabled = true
         groutColor = DisplayingLabel.backgroundColor
-        collectionView.setNeedsLayout()
-        CVCell().setNeedsLayout()
-        //createGrid()
+        //collectionView.setNeedsLayout()
+        //CVCell().setNeedsLayout()
+        createGrid()
     }
     
     // MARK: - Help Segue
