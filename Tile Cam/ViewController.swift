@@ -11,9 +11,11 @@ import AVFoundation
 import CoreImage
 import FontAwesome_swift
 
+
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, CustomCollectionViewCellDelegate {
     
     // MARK: - Outlets
+    @IBOutlet weak var btn2: UIButton!
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var help: UIBarButtonItem!
     @IBOutlet weak var zoomMinus: UIBarButtonItem!
@@ -24,7 +26,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var switchCamera: UIBarButtonItem!
     @IBOutlet weak var flash: UIBarButtonItem!
-    @IBOutlet weak var share: UIBarButtonItem!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var gridSettingsView: UIView!
     @IBOutlet weak var RedLabel: UILabel!
@@ -74,7 +75,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         super.viewDidLoad()
         
         gridButton.enabled = false
-        share.enabled = false
+        save.enabled = false
         
         let attributes = [NSFontAttributeName: UIFont.fontAwesomeOfSize(24)] as Dictionary!
         flash.setTitleTextAttributes(attributes, forState: .Normal)
@@ -83,10 +84,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         switchCamera.title = String.fontAwesomeIconWithName(.Refresh)
         cancel.setTitleTextAttributes(attributes, forState: .Normal)
         cancel.title = String.fontAwesomeIconWithName(.Eraser)
-//        save.setTitleTextAttributes(attributes, forState: .Normal)
-//        save.title = String.fontAwesomeIconWithName(.Photo)
-        share.setTitleTextAttributes(attributes, forState: .Normal)
-        share.title = String.fontAwesomeIconWithName(.Share)
+        save.setTitleTextAttributes(attributes, forState: .Normal)
+        save.title = String.fontAwesomeIconWithName(.Photo)
+//        share.setTitleTextAttributes(attributes, forState: .Normal)
+//        share.title = String.fontAwesomeIconWithName(.Share)
         gridButton.setTitleTextAttributes(attributes, forState: .Normal)
         gridButton.title = String.fontAwesomeIconWithName(.Th)
         zoomPlus.setTitleTextAttributes(attributes, forState: .Normal)
@@ -105,7 +106,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.view.addSubview(btn)
         btn.layer.cornerRadius = 35
         
-        let btn2: UIButton = UIButton(frame: CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 128, 58, 58))
+        btn2.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 128, 58, 58)
         btn2.backgroundColor = UIColor.clearColor()
         btn2.enabled = false
         self.view.addSubview(btn2)
@@ -125,7 +126,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         slider!.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
         slider!.minimumTrackTintColor = UIColor.whiteColor()
         slider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-
+        
         createGrid()
         // AV
         let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as! [AVCaptureDevice]
@@ -282,7 +283,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: - Camera Button
     func buttonAction(sender: UIButton) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.btn.backgroundColor = UIColor.grayColor()
+            self.btn2.backgroundColor = UIColor.grayColor()
         }
         
         let currentCells = self.collectionView.visibleCells() as! [CVCell]
@@ -291,11 +292,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         if self.dummyArray.isEmpty == true  {
             //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.dummyArray = currentCells
+            //print("DummyArray:\(dummyArray)")
             let myCell = self.dummyArray.randomItem()
-            let index = self.collectionView.indexPathForCell(myCell)
-            myCell.tag = index!.row
+            //let myCell = self.dummyArray.iterateItem()
             
-            print("myCell:\(myCell.tag)")
+            //let index = self.collectionView.indexPathForCell(myCell)
+            //myCell.tag = index!.row
+            //print("myCell:\(myCell.tag)")
             
             //if myCell.shutter.hidden == false {
                 
@@ -326,10 +329,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
             let myCell = self.dummyArray.randomItem()
-            let index = self.collectionView.indexPathForCell(myCell)
-            myCell.tag = index!.row
+            //let index = self.collectionView.indexPathForCell(myCell)
+            //myCell.tag = index!.row
             
-            print("myCell:\(myCell.tag)")
+            //print("myCell:\(myCell.tag)")
             
             //if myCell.shutter.hidden == false {
                 
@@ -363,12 +366,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func buttonActionEnd(sender: UIButton) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.btn.backgroundColor = UIColor.whiteColor()
+            self.btn2.backgroundColor = UIColor.clearColor()
             if self.dummyArray.count < 1 {
-                self.btn.enabled = false
-                self.btn.backgroundColor = UIColor.darkGrayColor()
+                //self.btn.enabled = false
+                self.btn.hidden = true
+                //self.btn.backgroundColor = UIColor.darkGrayColor()
                 self.gridButton.enabled = true
-                self.share.enabled = true
+                self.save.enabled = true
                 self.zoomMinus.enabled = false
                 self.zoomPlus.enabled = false
                 self.switchCamera.enabled = false
@@ -514,8 +518,38 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         groutWidth = 0.5
     }
     //Save
-//    @IBAction func saveImageButtonPressed(sender: AnyObject) {
+    @IBAction func saveImageButtonPressed(sender: AnyObject) {
+        dispatch_async(dispatch_get_main_queue()) {
+            let image = self.view?.capture()
+            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                for subview in self.view.subviews {
+                    if subview is UICollectionView {
+                        subview.removeFromSuperview()
+                    }
+                    if subview is UIImageView {
+                        subview.removeFromSuperview()
+                    }
+                    self.slider!.hidden = false
+                    self.createGrid()
+                    self.dummyArray = [CVCell]()
+                    self.btn.hidden = false
+                    self.btn.enabled = true
+                    self.btn.backgroundColor = UIColor.whiteColor()
+                }
+            }
+        }
+    }
+    //Share
+//    func presentActivityVCForImage(image: UIImage) {
+//        self.presentViewController(
+//            UIActivityViewController(activityItems: [image], applicationActivities: nil), animated: true, completion: nil)
+//    }
+//    
+//    @IBAction func shareButtonPressed(sender: AnyObject) {
 //        let image = self.view?.capture()
+//        self.presentActivityVCForImage(image!)
 //        
 //        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
 //        for subview in view.subviews {
@@ -533,32 +567,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 //            btn.backgroundColor = UIColor.whiteColor()
 //        }
 //    }
-    //Share
-    func presentActivityVCForImage(image: UIImage) {
-        self.presentViewController(
-            UIActivityViewController(activityItems: [image], applicationActivities: nil), animated: true, completion: nil)
-    }
-    
-    @IBAction func shareButtonPressed(sender: AnyObject) {
-        let image = self.view?.capture()
-        self.presentActivityVCForImage(image!)
-        
-        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-        for subview in view.subviews {
-            if subview is UICollectionView {
-                subview.removeFromSuperview()
-            }
-            if subview is UIImageView {
-                subview.removeFromSuperview()
-            }
-            slider!.hidden = false
-            createGrid()
-            dummyArray = [CVCell]()
-            btn.hidden = false
-            btn.enabled = true
-            btn.backgroundColor = UIColor.whiteColor()
-        }
-    }
     //Zoom
     @IBAction func zoomPlusPressed(sender: AnyObject) {
         zoomIn()
@@ -691,4 +699,10 @@ extension Array {
         return self.removeAtIndex(index)
         //return self[index]
     }
+    mutating func iterateItem() -> Element {
+        let index = Index(self.count)
+        return self.removeAtIndex(index)
+        //return self[index]
+    }
+
 }

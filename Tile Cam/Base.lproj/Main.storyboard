@@ -71,15 +71,25 @@
                                     <constraint firstAttribute="width" constant="70" id="k2p-aY-XwH"/>
                                 </constraints>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bT0-ws-sfg">
+                                <rect key="frame" x="271" y="472" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="4eN-Xg-mes"/>
+                                    <constraint firstAttribute="height" constant="58" id="U75-tw-bg7"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="B7p-hN-i73" firstAttribute="top" secondItem="pBP-fu-EmZ" secondAttribute="bottom" constant="20" id="9dp-MO-CIb"/>
+                            <constraint firstItem="bT0-ws-sfg" firstAttribute="centerY" secondItem="pBP-fu-EmZ" secondAttribute="centerY" id="CmD-Jm-4S7"/>
                             <constraint firstItem="G4Y-FP-424" firstAttribute="top" secondItem="xuV-aU-wmb" secondAttribute="bottom" id="FhO-yD-Jey"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="leading" secondItem="G4Y-FP-424" secondAttribute="leading" id="IRg-Yf-M9m"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="leading" secondItem="1We-vk-zIi" secondAttribute="leading" id="KhT-ty-0SP"/>
                             <constraint firstItem="pBP-fu-EmZ" firstAttribute="centerX" secondItem="1We-vk-zIi" secondAttribute="centerX" id="UdF-cT-Ez7"/>
+                            <constraint firstItem="bT0-ws-sfg" firstAttribute="centerX" secondItem="1We-vk-zIi" secondAttribute="centerX" id="acR-Mz-feq"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="top" secondItem="xuV-aU-wmb" secondAttribute="bottom" id="gyl-Dx-mzB"/>
+                            <constraint firstItem="bT0-ws-sfg" firstAttribute="centerX" secondItem="pBP-fu-EmZ" secondAttribute="centerX" id="jb0-Io-oBI"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="centerX" secondItem="1We-vk-zIi" secondAttribute="centerX" id="lao-fL-rdP"/>
                             <constraint firstItem="zhP-Bq-nYa" firstAttribute="width" secondItem="G4Y-FP-424" secondAttribute="width" id="s4f-SI-Fdw"/>
                             <constraint firstItem="G4Y-FP-424" firstAttribute="width" secondItem="1We-vk-zIi" secondAttribute="width" id="suI-CL-hPs"/>
@@ -113,7 +123,7 @@
                         <barButtonItem title="Item" style="plain" id="Qzj-LI-yKx">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="shareButtonPressed:" destination="ib9-pd-yGL" id="3KW-FQ-9Nu"/>
+                                <action selector="saveImageButtonPressed:" destination="ib9-pd-yGL" id="Bdq-Jc-TxG"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -157,6 +167,7 @@
                         <outlet property="RedLabel" destination="lzX-qI-8hz" id="Opn-ia-MWw"/>
                         <outlet property="RedSlider" destination="t05-29-aw1" id="5jj-UM-6VV"/>
                         <outlet property="btn" destination="pBP-fu-EmZ" id="UwY-Yl-jdX"/>
+                        <outlet property="btn2" destination="bT0-ws-sfg" id="BOk-cA-gh7"/>
                         <outlet property="cancel" destination="iQV-FG-nhX" id="sDm-zm-LHI"/>
                         <outlet property="collectionView" destination="zhP-Bq-nYa" id="DWO-hh-y2J"/>
                         <outlet property="doneColorButton" destination="jcg-Vg-isM" id="GK2-Jk-nYm"/>
@@ -167,7 +178,7 @@
                         <outlet property="groutWidthSlider" destination="ReT-X7-KW7" id="MEZ-G7-Hdh"/>
                         <outlet property="help" destination="02o-oj-JCI" id="H43-EV-61E"/>
                         <outlet property="previewView" destination="G4Y-FP-424" id="0Zn-4z-LUL"/>
-                        <outlet property="share" destination="Qzj-LI-yKx" id="weD-hW-4it"/>
+                        <outlet property="save" destination="Qzj-LI-yKx" id="rNf-XQ-GeU"/>
                         <outlet property="switchCamera" destination="7qy-fa-TIO" id="yWU-FE-7eZ"/>
                         <outlet property="zoomMag" destination="G2Z-bv-8X5" id="wrW-v1-KYr"/>
                         <outlet property="zoomMinus" destination="a1i-26-dOv" id="Vlg-iM-WWD"/>
