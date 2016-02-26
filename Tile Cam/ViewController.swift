@@ -246,7 +246,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: - Camera Snap
     func doSnap(sender: AnyObject!) {
         
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        let priority = QOS_CLASS_USER_INITIATED
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
             if let videoConnection = self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
@@ -291,7 +291,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         print("currentCells indices:\(self.dummyArray.indices)")
         
         if self.dummyArray.isEmpty == true  {
-            //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.dummyArray = currentCells
             //print("DummyArray:\(dummyArray)")
             let myCell = self.dummyArray.randomItem()
@@ -305,7 +305,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 
                 print("CurrentCells: \(currentCells.count)")
                 self.doSnap(CVCell)
-                dispatch_async(dispatch_get_main_queue()) {
+                //dispatch_async(dispatch_get_main_queue()) {
                     let imageView = UIImageView()
                     imageView.frame = self.previewView.frame
                     self.capturedImage = imageView
@@ -322,12 +322,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     self.view.insertSubview(imageView, belowSubview: self.collectionView)
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
-                }
+                //}
             //}
             self.view.layoutIfNeeded()
-            //}, completion: nil)
+            }, completion: nil)
         } else {
-            //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             //let myCell = self.dummyArray.iterateItem()
             let myCell = self.dummyArray.randomItem()
             
@@ -341,7 +341,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 print("CurrentCells: \(currentCells.count)")
                 self.doSnap(CVCell)
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                //dispatch_async(dispatch_get_main_queue()) {
                     let imageView = UIImageView()
                     imageView.frame = self.previewView.frame
                     self.capturedImage = imageView
@@ -358,11 +358,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     self.view.insertSubview(imageView, belowSubview: self.collectionView)
                     print("The cell tag is: \(myCell.tag)")
                     myCell.shutter.hidden = true
-                }
+                //}
             //}
             self.view.layoutIfNeeded()
             self.view.setNeedsDisplay()
-            //}, completion: nil)
+            }, completion: nil)
         }
     }
     
