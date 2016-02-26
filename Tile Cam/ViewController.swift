@@ -213,7 +213,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: self.screenWidth/CGFloat(self.someNumber), height: self.screenWidth/CGFloat(self.someNumber))
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 0.25
         self.collectionView! = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         self.collectionView!.frame = self.previewView.frame
         self.collectionView!.dataSource = self
@@ -282,6 +282,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK: - Camera Button
     func buttonAction(sender: UIButton) {
+        
         dispatch_async(dispatch_get_main_queue()) {
             self.btn2.backgroundColor = UIColor.grayColor()
         }
@@ -296,8 +297,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             let myCell = self.dummyArray.randomItem()
             //let myCell = self.dummyArray.iterateItem()
             
-            //let index = self.collectionView.indexPathForCell(myCell)
-            //myCell.tag = index!.row
+            let index = self.collectionView.indexPathForCell(myCell)
+            myCell.tag = index!.row
             //print("myCell:\(myCell.tag)")
             
             //if myCell.shutter.hidden == false {
@@ -327,10 +328,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             //}, completion: nil)
         } else {
             //UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            
+            //let myCell = self.dummyArray.iterateItem()
             let myCell = self.dummyArray.randomItem()
-            //let index = self.collectionView.indexPathForCell(myCell)
-            //myCell.tag = index!.row
+            
+            let index = self.collectionView.indexPathForCell(myCell)
+            myCell.tag = index!.row
             
             //print("myCell:\(myCell.tag)")
             
@@ -393,8 +395,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CVCell
-        //let borderWidth = groutWidth
-        //cell.frame = CGRectInset(cell.frame, -CGFloat(borderWidth), -CGFloat(borderWidth))
+        let borderWidth = groutWidth
+        cell.frame = CGRectInset(cell.frame, -CGFloat(borderWidth), -CGFloat(borderWidth))
         cell.backgroundColor = UIColor.clearColor()
         if groutColor != nil {
             cell.layer.borderColor = groutColor.CGColor
@@ -701,8 +703,7 @@ extension Array {
     }
     mutating func iterateItem() -> Element {
         let index = Index(self.count)
-        return self.removeAtIndex(index)
-        //return self[index]
+        //return self.removeAtIndex(index)
+        return self[index]
     }
-
 }
