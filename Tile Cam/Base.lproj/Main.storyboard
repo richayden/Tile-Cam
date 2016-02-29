@@ -142,7 +142,7 @@
                             </barButtonItem>
                         </leftBarButtonItems>
                         <view key="titleView" contentMode="scaleToFill" id="0cM-CL-1dR" customClass="TileLogoView" customModule="Tile_Cam" customModuleProvider="target">
-                            <rect key="frame" x="255" y="10" width="90" height="24"/>
+                            <rect key="frame" x="284" y="4" width="33" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <rightBarButtonItems>

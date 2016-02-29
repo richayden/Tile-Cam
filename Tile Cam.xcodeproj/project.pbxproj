@@ -11,11 +11,11 @@
 		9B24DCE61C3DA6AC0012A595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24DCE51C3DA6AC0012A595 /* ViewController.swift */; };
 		9B6C90871C7A4AF40031F324 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C90851C7A4AF40031F324 /* CustomView.swift */; };
 		9B6C90881C7A4AF40031F324 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C90861C7A4AF40031F324 /* QCMethod.swift */; };
-		9B6DA2B91C7BD49B00A27A2A /* TileLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DA2B81C7BD49B00A27A2A /* TileLogoView.swift */; };
-		9B6DA2BD1C7BD6C200A27A2A /* TileLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DA2BC1C7BD6C200A27A2A /* TileLogo.swift */; };
 		9B6F409B1C69665200FF3CC1 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F409A1C69665200FF3CC1 /* MenuTableViewController.swift */; };
 		9B6F409D1C69668D00FF3CC1 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F409C1C69668D00FF3CC1 /* MenuTableViewCell.swift */; };
 		9BA8ACE51C5FCF540057ACF2 /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8ACE41C5FCF540057ACF2 /* ImageMaker.swift */; };
+		9BABB8C71C83B4E0006D73E8 /* TileLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB8C61C83B4E0006D73E8 /* TileLogoView.swift */; };
+		9BABB8CB1C83B698006D73E8 /* TileLogoSyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB8CA1C83B698006D73E8 /* TileLogoSyleKit.swift */; };
 		9BB9DD641C508E140071FA96 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB9DD631C508E140071FA96 /* white.png */; };
 		9BC196511C6A76CC00A881C0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC196501C6A76CC00A881C0 /* SplashViewController.swift */; };
 		9BEF97551C3C30C100C4CF36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEF97541C3C30C100C4CF36 /* AppDelegate.swift */; };
@@ -30,11 +30,11 @@
 		9B24DCE51C3DA6AC0012A595 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B6C90851C7A4AF40031F324 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		9B6C90861C7A4AF40031F324 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
-		9B6DA2B81C7BD49B00A27A2A /* TileLogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLogoView.swift; sourceTree = "<group>"; };
-		9B6DA2BC1C7BD6C200A27A2A /* TileLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLogo.swift; sourceTree = "<group>"; };
 		9B6F409A1C69665200FF3CC1 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		9B6F409C1C69668D00FF3CC1 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		9BA8ACE41C5FCF540057ACF2 /* ImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMaker.swift; sourceTree = "<group>"; };
+		9BABB8C61C83B4E0006D73E8 /* TileLogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLogoView.swift; sourceTree = "<group>"; };
+		9BABB8CA1C83B698006D73E8 /* TileLogoSyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLogoSyleKit.swift; sourceTree = "<group>"; };
 		9BB9DD631C508E140071FA96 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		9BC196501C6A76CC00A881C0 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		9BEF97511C3C30C100C4CF36 /* Tile Cam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tile Cam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +90,8 @@
 				9BA8ACE41C5FCF540057ACF2 /* ImageMaker.swift */,
 				9B6C90851C7A4AF40031F324 /* CustomView.swift */,
 				9B6C90861C7A4AF40031F324 /* QCMethod.swift */,
-				9B6DA2BC1C7BD6C200A27A2A /* TileLogo.swift */,
-				9B6DA2B81C7BD49B00A27A2A /* TileLogoView.swift */,
+				9BABB8C61C83B4E0006D73E8 /* TileLogoView.swift */,
+				9BABB8CA1C83B698006D73E8 /* TileLogoSyleKit.swift */,
 				9BB9DD631C508E140071FA96 /* white.png */,
 				9BEF975B1C3C30C100C4CF36 /* Assets.xcassets */,
 				9BEF97581C3C30C100C4CF36 /* Main.storyboard */,
@@ -155,6 +155,11 @@
 					9BEF97501C3C30C100C4CF36 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 86F2JH6FE5;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -258,9 +263,9 @@
 			files = (
 				9BEF97691C3C33B300C4CF36 /* CVCell.swift in Sources */,
 				9B6C90871C7A4AF40031F324 /* CustomView.swift in Sources */,
+				9BABB8C71C83B4E0006D73E8 /* TileLogoView.swift in Sources */,
 				9B24DCE61C3DA6AC0012A595 /* ViewController.swift in Sources */,
-				9B6DA2BD1C7BD6C200A27A2A /* TileLogo.swift in Sources */,
-				9B6DA2B91C7BD49B00A27A2A /* TileLogoView.swift in Sources */,
+				9BABB8CB1C83B698006D73E8 /* TileLogoSyleKit.swift in Sources */,
 				9B6F409D1C69668D00FF3CC1 /* MenuTableViewCell.swift in Sources */,
 				9B6F409B1C69665200FF3CC1 /* MenuTableViewController.swift in Sources */,
 				9BEF97551C3C30C100C4CF36 /* AppDelegate.swift in Sources */,
