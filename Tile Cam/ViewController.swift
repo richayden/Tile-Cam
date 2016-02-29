@@ -692,7 +692,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         //collectionView.hidden = false
         slider!.hidden = true
         btn.enabled = true
-        groutColor = DisplayingLabel.backgroundColor!
+        if DisplayingLabel.backgroundColor == nil {
+            groutColor = UIColor.lightGrayColor()
+        } else if DisplayingLabel.backgroundColor != nil {
+            groutColor = DisplayingLabel.backgroundColor!
+        }
+        
         
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
