@@ -341,7 +341,7 @@
         <scene sceneID="mXT-xr-KPV">
             <objects>
                 <tableViewController id="zZp-te-qtw" customClass="MenuTableViewController" customModule="Tile_Cam" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="1" sectionFooterHeight="1" id="Iqg-EM-eSq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="55" sectionHeaderHeight="1" sectionFooterHeight="1" id="Iqg-EM-eSq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -351,11 +351,11 @@
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="65" id="033-Ha-Umi" customClass="MenuTableViewCell" customModule="Tile_Cam" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="11" width="600" height="65"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="55" id="033-Ha-Umi" customClass="MenuTableViewCell" customModule="Tile_Cam" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="11" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="033-Ha-Umi" id="2VA-EF-TEn">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sg-PX-Rg3">
@@ -372,7 +372,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-Ov-nfe">
                                             <rect key="frame" x="38" y="29" width="549" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -404,8 +404,40 @@
                             <outlet property="delegate" destination="zZp-te-qtw" id="KJD-EW-Kff"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="devView" destination="sEb-9M-OA7" id="NIj-2f-jGU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dM5-KB-q2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="sEb-9M-OA7">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="65"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="glasses" translatesAutoresizingMaskIntoConstraints="NO" id="937-p9-g4K">
+                            <rect key="frame" x="8" y="0.0" width="102" height="65"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="102" id="stL-7J-zd0"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thu-Kv-lfL">
+                            <rect key="frame" x="118" y="5" width="248" height="52"/>
+                            <string key="text">Copyright © 2016 richayden.
+All rights reserved.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="937-p9-g4K" firstAttribute="top" secondItem="sEb-9M-OA7" secondAttribute="top" id="0pp-Jd-HSV"/>
+                        <constraint firstAttribute="trailing" secondItem="Thu-Kv-lfL" secondAttribute="trailing" constant="12" id="XHw-IK-vp8"/>
+                        <constraint firstItem="937-p9-g4K" firstAttribute="leading" secondItem="sEb-9M-OA7" secondAttribute="leadingMargin" id="ZeE-Yu-ffb"/>
+                        <constraint firstItem="Thu-Kv-lfL" firstAttribute="bottom" secondItem="sEb-9M-OA7" secondAttribute="bottomMargin" id="e7a-CW-SPm"/>
+                        <constraint firstItem="Thu-Kv-lfL" firstAttribute="leading" secondItem="937-p9-g4K" secondAttribute="trailing" constant="8" id="jl6-gW-MZl"/>
+                        <constraint firstItem="Thu-Kv-lfL" firstAttribute="top" secondItem="sEb-9M-OA7" secondAttribute="top" constant="5" id="tys-ov-Oju"/>
+                    </constraints>
+                </view>
                 <exit id="HE4-NR-vku" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2747" y="1131"/>
@@ -433,4 +465,7 @@
             <point key="canvasLocation" x="375" y="1131"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="glasses" width="139" height="65"/>
+    </resources>
 </document>

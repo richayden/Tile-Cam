@@ -11,15 +11,22 @@ import FontAwesome_swift
 
 class MenuTableViewController: UITableViewController {
     
+    @IBOutlet var devView: UIView!
+    
+    
     var iconText = ["\u{f185}", "\u{f021}", "\u{f00a}", "\u{f059}", "\u{f192}", "\u{f12d}", "\u{f002}", "\u{f03e}"]
         
-    var menuItems = ["Torch Light On/Off:", "Toggle Camera:", "Grout Settings:", "Help:", "Grid Sizer", "Clear:", "Zoom In/Out:", "Save Image:"]
+    var menuItems = ["Torch Light On/Off:", "Toggle Camera:", "Grout Settings:", "Help:", "Tile Slider", "Clear:", "Zoom In/Out:", "Save Image:"]
     
-    var subtitles = ["Turn the torch on/off in low light situations or to vary light of captured tiles.", "Toggle between front and back facing cameras.", "Add grout to your tiles. Select color and line width.", "You are here.", "Slide to change tile grid size.", "Clears the current tile grid.", "Zooms the camera in/out.", "Save tile image to photo library."]
+    var subtitles = ["Turn the torch on/off.", "Toggle front/back facing cameras.", "Select line width and color.", "You are here.", "Slide to change tile grid size.", "Clear the current tile grid.", "Zoom in/out.", "Save tile image to photo library."]
     var currentItem = "Done"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        devView.frame = CGRectMake(0, (UIScreen.mainScreen().bounds.size.height) - 65, (UIScreen.mainScreen().bounds.size.width), 65)
+        devView.clipsToBounds = true
+        
+        self.view.addSubview(devView)
         
     }
     

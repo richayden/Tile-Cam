@@ -697,8 +697,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         } else if DisplayingLabel.backgroundColor != nil {
             groutColor = DisplayingLabel.backgroundColor!
         }
-        
-        
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
         //collectionView.setNeedsLayout()
