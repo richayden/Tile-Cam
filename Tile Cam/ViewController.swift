@@ -372,9 +372,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         dispatch_async(dispatch_get_main_queue()) {
             self.btn2.backgroundColor = UIColor.clearColor()
             if self.dummyArray.count < 1 {
-                //self.btn.enabled = false
                 self.btn.hidden = true
-                //self.btn.backgroundColor = UIColor.darkGrayColor()
                 self.gridButton.enabled = true
                 self.save.enabled = true
                 self.zoomMinus.enabled = false
