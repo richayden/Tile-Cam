@@ -318,7 +318,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         myCell.layer.borderColor = UIColor.clearColor().CGColor
         self.view.insertSubview(imageView, belowSubview: self.collectionView)
         print("The cell tag is: \(myCell.tag)")
-        //myCell.shutter.hidden = true
     }
     
     // MARK: - Camera Button

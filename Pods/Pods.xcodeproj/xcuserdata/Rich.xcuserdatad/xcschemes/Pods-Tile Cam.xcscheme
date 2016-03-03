@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '61B9CAEDBDF41D413F6F901A'
+               BlueprintIdentifier = 'A89BC5EC6A112AD02FC124FD'
                BlueprintName = 'Pods-Tile Cam'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Tile_Cam.framework'>
