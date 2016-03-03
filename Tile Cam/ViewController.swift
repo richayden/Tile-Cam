@@ -641,13 +641,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         if gridSettingsView != nil {
             addGridSettingsView(self)
             btn.enabled = false
-            //collectionView.hidden = true
             slider!.hidden = true
-//        } else {
-//            removeGridSettingsView()
-//            //collectionView.hidden = false
-//            //slider!.hidden = false
-//            btn.enabled = true
         }
     }
     
