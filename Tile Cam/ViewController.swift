@@ -662,7 +662,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         let roundedValue: Float = roundf(selectedValue / 0.5) * 0.5
         groutWidthLabel.text = "W: \(String(stringInterpolationSegment: roundedValue))"
         groutWidth = roundedValue
-        //collectionView.layer.borderWidth = CGFloat(groutWidth)
     }
     //Grout color sliders
     @IBAction func RedSliderAction(sender: UISlider) {
