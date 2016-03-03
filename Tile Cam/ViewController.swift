@@ -71,23 +71,18 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return true
     }
     // MARK: - Phone Type Enum
-    enum UIUserInterfaceIdiom : Int
-    {
+    enum UIUserInterfaceIdiom : Int {
         case Unspecified
         case Phone
         case Pad
     }
-    
-    struct ScreenSize
-    {
+    struct ScreenSize {
         static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
         static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
         static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
         static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
     }
-    
-    struct DeviceType
-    {
+    struct DeviceType {
         static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
         static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
         static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
@@ -98,7 +93,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         gridButton.enabled = false
         save.enabled = false
         
@@ -130,7 +124,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         btn.addTarget(self, action: "buttonActionEnd:", forControlEvents: .TouchUpInside)
         self.view.addSubview(btn)
         btn.layer.cornerRadius = 35
-        
         btn2.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 128, 58, 58)
         btn2.backgroundColor = UIColor.clearColor()
         btn2.enabled = false
@@ -138,17 +131,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         btn2.layer.cornerRadius = 29
         btn2.layer.borderWidth = 1.5
         btn2.layer.borderColor = UIColor.blackColor().CGColor
-        
         capturedImage?.image = UIImage(named: "shutter")
         screenWidth = UIScreen.mainScreen().bounds.size.width
-        // Grid Slider
         
+        // Grid Slider
         if DeviceType.IS_IPHONE_4_OR_LESS {
             slider = UISlider(frame: CGRectMake(20, screenWidth + 38, screenWidth - 40, 50))
-            
         } else {
-
-        slider = UISlider(frame: CGRectMake(20, screenWidth + 54, screenWidth - 40, 50))
+            slider = UISlider(frame: CGRectMake(20, screenWidth + 54, screenWidth - 40, 50))
         }
         self.view.addSubview(slider!)
         let numberOfSteps = Float(numbers.count - 1)
@@ -158,9 +148,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         slider!.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
         slider!.minimumTrackTintColor = UIColor.whiteColor()
         slider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
-        
-        
         createGrid()
+        
         // AV
         let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as! [AVCaptureDevice]
         
@@ -185,17 +174,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             return
         }
         self.captureSession = AVCaptureSession()
-        
-//        if someNumber > 0 && someNumber < 4 {
-//            self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto
-//        }
-//        if someNumber > 3 && someNumber < 8 {
-//            self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
-//        }
-//        if someNumber > 7 {
-//            self.captureSession.sessionPreset = AVCaptureSessionPresetLow
-//        }
-        
         self.captureSession.sessionPreset = AVCaptureSessionPresetHigh
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         var error: NSError?
@@ -235,12 +213,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         super.viewDidAppear(animated)
         collectionView!.frame = previewView.frame
         previewLayer!.frame = previewView.bounds
-        
         borderView = UIView(frame: collectionView.frame)
         self.view.addSubview(borderView!)
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
-
     }
     
     // MARK: - Grid and Slider

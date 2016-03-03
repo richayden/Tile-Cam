@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8343834B93A56764DDB15BFA /* Pods_Tile_Cam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFCC534DB52A506408C75B30 /* Pods_Tile_Cam.framework */; };
+		9B1BF1731C8897A70001E5F0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9B1BF1721C8897A70001E5F0 /* .gitignore */; };
 		9B24DCE61C3DA6AC0012A595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24DCE51C3DA6AC0012A595 /* ViewController.swift */; };
 		9B6C90871C7A4AF40031F324 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C90851C7A4AF40031F324 /* CustomView.swift */; };
 		9B6C90881C7A4AF40031F324 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C90861C7A4AF40031F324 /* QCMethod.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		9098575B39974600AF2E311A /* Pods-Tile Cam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tile Cam.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tile Cam/Pods-Tile Cam.release.xcconfig"; sourceTree = "<group>"; };
+		9B1BF1721C8897A70001E5F0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9B24DCE51C3DA6AC0012A595 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B6C90851C7A4AF40031F324 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		9B6C90861C7A4AF40031F324 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				9BEF97581C3C30C100C4CF36 /* Main.storyboard */,
 				9BEF975D1C3C30C100C4CF36 /* LaunchScreen.storyboard */,
 				9BEF97601C3C30C100C4CF36 /* Info.plist */,
+				9B1BF1721C8897A70001E5F0 /* .gitignore */,
 			);
 			path = "Tile Cam";
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B1BF1731C8897A70001E5F0 /* .gitignore in Resources */,
 				9BEF975F1C3C30C100C4CF36 /* LaunchScreen.storyboard in Resources */,
 				9BB9DD641C508E140071FA96 /* white.png in Resources */,
 				9BEF975C1C3C30C100C4CF36 /* Assets.xcassets in Resources */,
