@@ -699,7 +699,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     @IBAction func doneColorButtonPressed(sender: AnyObject) {
         gridSettingsView.removeFromSuperview()
-        //collectionView.hidden = false
         slider!.hidden = true
         btn.enabled = true
         if DisplayingLabel.backgroundColor == nil {
@@ -709,8 +708,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         }
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
-        //collectionView.setNeedsLayout()
-        //CVCell().setNeedsLayout()
         createGrid()
     }
     
@@ -725,6 +722,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 extension Array {
     mutating func randomItem() -> Element {
         let index = Int(arc4random_uniform(UInt32(self.count)))
+        print(index)
         return self.removeAtIndex(index)
         //return self[index]
     }
