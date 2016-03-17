@@ -12,7 +12,7 @@ import UIKit
 
 @objc protocol CustomCollectionViewCellDelegate : NSObjectProtocol {
     func doSnap(sender: AnyObject!)
-    //func cellSnap(cell: CVCell!)
+    //func snapCellnap(cell: CVCell!)
 }
 
 
@@ -49,11 +49,11 @@ class CVCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 //            self.layer.borderColor = UIColor.lightGrayColor().CGColor
 //            self.layer.borderWidth = 0.5
             //self.layer.cornerRadius = 20
-            let textFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-            label = UILabel(frame: textFrame)
-            label.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
-            label.textAlignment = .Center
-            contentView.addSubview(label)
+//            let textFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+//            label = UILabel(frame: textFrame)
+//            label.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
+//            label.textAlignment = .Center
+//            contentView.addSubview(label)
             
             shutter = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height).insetBy(dx: 5, dy: 5))
             shutter.contentMode = UIViewContentMode.ScaleAspectFill

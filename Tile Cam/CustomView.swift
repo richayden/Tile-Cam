@@ -1,7 +1,7 @@
 //
 //  CustomView.swift
 //
-//  Code generated using QuartzCode 1.39.9 on 2/24/16.
+//  Code generated using QuartzCode 1.39.12 on 3/16/16.
 //  www.quartzcodeapp.com
 //
 
@@ -10,9 +10,9 @@ import UIKit
 @IBDesignable
 class CustomView: UIView {
 	
-	var layers : Dictionary<String, AnyObject> = [:]
-	var completionBlocks : Dictionary<CAAnimation, (Bool) -> Void> = [:]
 	var updateLayerValueForCompletedAnimation : Bool = false
+	var completionBlocks : Dictionary<CAAnimation, (Bool) -> Void> = [:]
+	var layers : Dictionary<String, AnyObject> = [:]
 	
 	
 	
@@ -50,134 +50,84 @@ class CustomView: UIView {
 	func setupLayers(){
 		let Tile = CALayer()
 		self.layer.addSublayer(Tile)
+		
 		layers["Tile"] = Tile
 		let path = CAShapeLayer()
 		Tile.addSublayer(path)
+		path.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
+		path.strokeColor = UIColor.blackColor().CGColor
 		layers["path"] = path
 		let path2 = CAShapeLayer()
 		Tile.addSublayer(path2)
+		path2.fillColor = UIColor.blackColor().CGColor
+		path2.lineWidth = 0
 		layers["path2"] = path2
 		let path3 = CAShapeLayer()
 		Tile.addSublayer(path3)
+		path3.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
+		path3.strokeColor = UIColor.blackColor().CGColor
 		layers["path3"] = path3
 		let path4 = CAShapeLayer()
 		Tile.addSublayer(path4)
+		path4.fillColor = UIColor.blackColor().CGColor
+		path4.lineWidth = 0
 		layers["path4"] = path4
 		let path5 = CAShapeLayer()
 		Tile.addSublayer(path5)
+		path5.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
+		path5.strokeColor = UIColor.blackColor().CGColor
 		layers["path5"] = path5
 		let path6 = CAShapeLayer()
 		Tile.addSublayer(path6)
+		path6.fillColor = UIColor.blackColor().CGColor
+		path6.lineWidth = 0
 		layers["path6"] = path6
 		let path7 = CAShapeLayer()
 		Tile.addSublayer(path7)
+		path7.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
+		path7.strokeColor = UIColor.blackColor().CGColor
 		layers["path7"] = path7
 		let path8 = CAShapeLayer()
 		Tile.addSublayer(path8)
+		path8.fillColor = UIColor.blackColor().CGColor
+		path8.lineWidth = 0
 		layers["path8"] = path8
 		
 		let Shutter = CALayer()
 		self.layer.addSublayer(Shutter)
+		
 		layers["Shutter"] = Shutter
 		let path9 = CAShapeLayer()
 		Shutter.addSublayer(path9)
+		path9.fillColor = UIColor.blackColor().CGColor
+		path9.lineWidth = 0
 		layers["path9"] = path9
 		let path10 = CAShapeLayer()
 		Shutter.addSublayer(path10)
+		path10.fillColor = UIColor.blackColor().CGColor
+		path10.lineWidth = 0
 		layers["path10"] = path10
 		let path11 = CAShapeLayer()
 		Shutter.addSublayer(path11)
+		path11.fillColor = UIColor.blackColor().CGColor
+		path11.lineWidth = 0
 		layers["path11"] = path11
 		let path12 = CAShapeLayer()
 		Shutter.addSublayer(path12)
+		path12.fillColor = UIColor.blackColor().CGColor
+		path12.lineWidth = 0
 		layers["path12"] = path12
 		let path13 = CAShapeLayer()
 		Shutter.addSublayer(path13)
+		path13.fillColor = UIColor.blackColor().CGColor
+		path13.lineWidth = 0
 		layers["path13"] = path13
 		let path14 = CAShapeLayer()
 		Shutter.addSublayer(path14)
+		path14.fillColor = UIColor.blackColor().CGColor
+		path14.lineWidth = 0
 		layers["path14"] = path14
-		
-		resetLayerPropertiesForLayerIdentifiers(nil)
 		setupLayerFrames()
-	}
-	
-	func resetLayerPropertiesForLayerIdentifiers(layerIds: [String]!){
-		CATransaction.begin()
-		CATransaction.setDisableActions(true)
-		
-		if layerIds == nil || layerIds.contains("path"){
-			let path = layers["path"] as! CAShapeLayer
-			path.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
-			path.strokeColor = UIColor.blackColor().CGColor
-		}
-		if layerIds == nil || layerIds.contains("path2"){
-			let path2 = layers["path2"] as! CAShapeLayer
-			path2.fillColor = UIColor.blackColor().CGColor
-			path2.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path3"){
-			let path3 = layers["path3"] as! CAShapeLayer
-			path3.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
-			path3.strokeColor = UIColor.blackColor().CGColor
-		}
-		if layerIds == nil || layerIds.contains("path4"){
-			let path4 = layers["path4"] as! CAShapeLayer
-			path4.fillColor = UIColor.blackColor().CGColor
-			path4.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path5"){
-			let path5 = layers["path5"] as! CAShapeLayer
-			path5.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
-			path5.strokeColor = UIColor.blackColor().CGColor
-		}
-		if layerIds == nil || layerIds.contains("path6"){
-			let path6 = layers["path6"] as! CAShapeLayer
-			path6.fillColor = UIColor.blackColor().CGColor
-			path6.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path7"){
-			let path7 = layers["path7"] as! CAShapeLayer
-			path7.fillColor   = UIColor(red:0.902, green: 0.906, blue:0.91, alpha:1).CGColor
-			path7.strokeColor = UIColor.blackColor().CGColor
-		}
-		if layerIds == nil || layerIds.contains("path8"){
-			let path8 = layers["path8"] as! CAShapeLayer
-			path8.fillColor = UIColor.blackColor().CGColor
-			path8.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path9"){
-			let path9 = layers["path9"] as! CAShapeLayer
-			path9.fillColor = UIColor(red:0.137, green: 0.122, blue:0.125, alpha:1).CGColor
-			path9.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path10"){
-			let path10 = layers["path10"] as! CAShapeLayer
-			path10.fillColor = UIColor(red:0.137, green: 0.122, blue:0.125, alpha:1).CGColor
-			path10.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path11"){
-			let path11 = layers["path11"] as! CAShapeLayer
-			path11.fillColor = UIColor(red:0.137, green: 0.122, blue:0.125, alpha:1).CGColor
-			path11.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path12"){
-			let path12 = layers["path12"] as! CAShapeLayer
-			path12.fillColor = UIColor(red:0.137, green: 0.122, blue:0.125, alpha:1).CGColor
-			path12.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path13"){
-			let path13 = layers["path13"] as! CAShapeLayer
-			path13.fillColor = UIColor(red:0.137, green: 0.122, blue:0.125, alpha:1).CGColor
-			path13.lineWidth = 0
-		}
-		if layerIds == nil || layerIds.contains("path14"){
-			let path14 = layers["path14"] as! CAShapeLayer
-			path14.fillColor = UIColor(red:0.137, green: 0.122, blue:0.125, alpha:1).CGColor
-			path14.lineWidth = 0
-		}
-		
-		CATransaction.commit()
 	}
 	
 	func setupLayerFrames(){
@@ -229,7 +179,7 @@ class CustomView: UIView {
 		}
 		
 		if let Shutter : CALayer = layers["Shutter"] as? CALayer{
-			Shutter.frame = CGRectMake(0.47595 * Shutter.superlayer!.bounds.width, 0.49646 * Shutter.superlayer!.bounds.height, 0.03034 * Shutter.superlayer!.bounds.width, 0.01709 * Shutter.superlayer!.bounds.height)
+			Shutter.frame = CGRectMake(-0.70508 * Shutter.superlayer!.bounds.width, -0.17875 * Shutter.superlayer!.bounds.height, 2.41016 * Shutter.superlayer!.bounds.width, 1.35751 * Shutter.superlayer!.bounds.height)
 		}
 		
 		if let path9 : CAShapeLayer = layers["path9"] as? CAShapeLayer{
@@ -274,7 +224,7 @@ class CustomView: UIView {
 	func addTileCamSplashAnimationCompletionBlock(completionBlock: ((finished: Bool) -> Void)?){
 		if completionBlock != nil{
 			let completionAnim = CABasicAnimation(keyPath:"completionAnim")
-			completionAnim.duration = 0.998
+			completionAnim.duration = 1.25
 			completionAnim.delegate = self
 			completionAnim.setValue("tileCamSplash", forKey:"animId")
 			completionAnim.setValue(false, forKey:"needEndAnim")
@@ -288,29 +238,96 @@ class CustomView: UIView {
 		
 		////Tile animation
 		let TileHiddenAnim      = CAKeyframeAnimation(keyPath:"hidden")
-		TileHiddenAnim.values   = [true, true, false, false]
+		TileHiddenAnim.values   = [false, false, false, false]
 		TileHiddenAnim.keyTimes = [0, 0.7, 0.747, 1]
-		TileHiddenAnim.duration = 0.998
+		TileHiddenAnim.duration = 1.25
 		
 		let TileTileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([TileHiddenAnim], fillMode:fillMode)
 		layers["Tile"]?.addAnimation(TileTileCamSplashAnim, forKey:"TileTileCamSplashAnim")
 		
-		let Shutter = layers["Shutter"] as! CALayer
+		let path9 = layers["path9"] as! CAShapeLayer
 		
-		////Shutter animation
-		let ShutterTransformAnim      = CAKeyframeAnimation(keyPath:"transform")
-		ShutterTransformAnim.values   = [NSValue(CATransform3D: CATransform3DIdentity), 
-			 NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(80, 80, 80), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1)))]
-		ShutterTransformAnim.keyTimes = [0, 1]
-		ShutterTransformAnim.duration = 0.998
+		////Path9 animation
+		let path9TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		path9TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2)), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2))]
+		path9TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
+		path9TransformAnim.duration = 1.25
 		
-		let ShutterOpacityAnim      = CAKeyframeAnimation(keyPath:"opacity")
-		ShutterOpacityAnim.values   = [0, 1, 1]
-		ShutterOpacityAnim.keyTimes = [0, 0.614, 1]
-		ShutterOpacityAnim.duration = 0.998
+		let path9TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path9TransformAnim], fillMode:fillMode)
+		path9.addAnimation(path9TileCamSplashAnim, forKey:"path9TileCamSplashAnim")
 		
-		let ShutterTileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([ShutterTransformAnim, ShutterOpacityAnim], fillMode:fillMode)
-		Shutter.addAnimation(ShutterTileCamSplashAnim, forKey:"ShutterTileCamSplashAnim")
+		let path10 = layers["path10"] as! CAShapeLayer
+		
+		////Path10 animation
+		let path10TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		path10TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(4.2, 4.2, 4.2)), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(4.2, 4.2, 4.2))]
+		path10TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
+		path10TransformAnim.duration = 1.25
+		
+		let path10TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path10TransformAnim], fillMode:fillMode)
+		path10.addAnimation(path10TileCamSplashAnim, forKey:"path10TileCamSplashAnim")
+		
+		let path11 = layers["path11"] as! CAShapeLayer
+		
+		////Path11 animation
+		let path11TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		path11TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3)), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3))]
+		path11TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
+		path11TransformAnim.duration = 1.25
+		
+		let path11TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path11TransformAnim], fillMode:fillMode)
+		path11.addAnimation(path11TileCamSplashAnim, forKey:"path11TileCamSplashAnim")
+		
+		let path12 = layers["path12"] as! CAShapeLayer
+		
+		////Path12 animation
+		let path12TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		path12TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2)), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2))]
+		path12TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
+		path12TransformAnim.duration = 1.25
+		
+		let path12TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path12TransformAnim], fillMode:fillMode)
+		path12.addAnimation(path12TileCamSplashAnim, forKey:"path12TileCamSplashAnim")
+		
+		let path13 = layers["path13"] as! CAShapeLayer
+		
+		////Path13 animation
+		let path13TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		path13TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(4.1, 4.1, 4.1)), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(4.1, 4.1, 4.1))]
+		path13TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
+		path13TransformAnim.duration = 1.25
+		
+		let path13TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path13TransformAnim], fillMode:fillMode)
+		path13.addAnimation(path13TileCamSplashAnim, forKey:"path13TileCamSplashAnim")
+		
+		let path14 = layers["path14"] as! CAShapeLayer
+		
+		////Path14 animation
+		let path14TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		path14TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3)), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DIdentity), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3))]
+		path14TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
+		path14TransformAnim.duration = 1.25
+		
+		let path14TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path14TransformAnim], fillMode:fillMode)
+		path14.addAnimation(path14TileCamSplashAnim, forKey:"path14TileCamSplashAnim")
 	}
 	
 	//MARK: - Animation Cleanup
@@ -329,14 +346,24 @@ class CustomView: UIView {
 	func updateLayerValuesForAnimationId(identifier: String){
 		if identifier == "tileCamSplash"{
 			QCMethod.updateValueFromPresentationLayerForAnimation((layers["Tile"] as! CALayer).animationForKey("TileTileCamSplashAnim"), theLayer:(layers["Tile"] as! CALayer))
-			QCMethod.updateValueFromPresentationLayerForAnimation((layers["Shutter"] as! CALayer).animationForKey("ShutterTileCamSplashAnim"), theLayer:(layers["Shutter"] as! CALayer))
+			QCMethod.updateValueFromPresentationLayerForAnimation((layers["path9"] as! CALayer).animationForKey("path9TileCamSplashAnim"), theLayer:(layers["path9"] as! CALayer))
+			QCMethod.updateValueFromPresentationLayerForAnimation((layers["path10"] as! CALayer).animationForKey("path10TileCamSplashAnim"), theLayer:(layers["path10"] as! CALayer))
+			QCMethod.updateValueFromPresentationLayerForAnimation((layers["path11"] as! CALayer).animationForKey("path11TileCamSplashAnim"), theLayer:(layers["path11"] as! CALayer))
+			QCMethod.updateValueFromPresentationLayerForAnimation((layers["path12"] as! CALayer).animationForKey("path12TileCamSplashAnim"), theLayer:(layers["path12"] as! CALayer))
+			QCMethod.updateValueFromPresentationLayerForAnimation((layers["path13"] as! CALayer).animationForKey("path13TileCamSplashAnim"), theLayer:(layers["path13"] as! CALayer))
+			QCMethod.updateValueFromPresentationLayerForAnimation((layers["path14"] as! CALayer).animationForKey("path14TileCamSplashAnim"), theLayer:(layers["path14"] as! CALayer))
 		}
 	}
 	
 	func removeAnimationsForAnimationId(identifier: String){
 		if identifier == "tileCamSplash"{
 			(layers["Tile"] as! CALayer).removeAnimationForKey("TileTileCamSplashAnim")
-			(layers["Shutter"] as! CALayer).removeAnimationForKey("ShutterTileCamSplashAnim")
+			(layers["path9"] as! CALayer).removeAnimationForKey("path9TileCamSplashAnim")
+			(layers["path10"] as! CALayer).removeAnimationForKey("path10TileCamSplashAnim")
+			(layers["path11"] as! CALayer).removeAnimationForKey("path11TileCamSplashAnim")
+			(layers["path12"] as! CALayer).removeAnimationForKey("path12TileCamSplashAnim")
+			(layers["path13"] as! CALayer).removeAnimationForKey("path13TileCamSplashAnim")
+			(layers["path14"] as! CALayer).removeAnimationForKey("path14TileCamSplashAnim")
 		}
 	}
 	

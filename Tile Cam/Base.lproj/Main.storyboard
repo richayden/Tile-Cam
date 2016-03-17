@@ -140,6 +140,11 @@
                                     <action selector="switchCameraButtonPressed:" destination="ib9-pd-yGL" id="6C6-XV-TlK"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="Item" id="XBx-sb-9vH">
+                                <connections>
+                                    <action selector="snapSelectorPressed:" destination="ib9-pd-yGL" id="BjV-Xh-971"/>
+                                </connections>
+                            </barButtonItem>
                         </leftBarButtonItems>
                         <view key="titleView" contentMode="scaleToFill" id="0cM-CL-1dR" customClass="TileLogoView" customModule="Tile_Cam" customModuleProvider="target">
                             <rect key="frame" x="284" y="4" width="33" height="36"/>
@@ -179,6 +184,7 @@
                         <outlet property="help" destination="02o-oj-JCI" id="H43-EV-61E"/>
                         <outlet property="previewView" destination="G4Y-FP-424" id="0Zn-4z-LUL"/>
                         <outlet property="save" destination="Qzj-LI-yKx" id="rNf-XQ-GeU"/>
+                        <outlet property="snapSelector" destination="XBx-sb-9vH" id="f9k-PT-lxk"/>
                         <outlet property="switchCamera" destination="7qy-fa-TIO" id="yWU-FE-7eZ"/>
                         <outlet property="zoomMag" destination="G2Z-bv-8X5" id="wrW-v1-KYr"/>
                         <outlet property="zoomMinus" destination="a1i-26-dOv" id="Vlg-iM-WWD"/>
@@ -462,7 +468,7 @@ All rights reserved.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hgx-dB-Qu9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="375" y="1131"/>
+            <point key="canvasLocation" x="363" y="1107"/>
         </scene>
     </scenes>
     <resources>

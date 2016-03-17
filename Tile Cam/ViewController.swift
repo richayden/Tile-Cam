@@ -14,6 +14,7 @@ import FontAwesome_swift
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, CustomCollectionViewCellDelegate {
     
     // MARK: - Outlets
+    @IBOutlet weak var snapSelector: UIBarButtonItem!
     @IBOutlet weak var btn2: UIButton!
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var help: UIBarButtonItem!
@@ -43,7 +44,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var GreenColor: Float = 0
     var BlueColor: Float = 0
     var groutColor = UIColor.lightGrayColor()
-
+    var snapState = 0
     var dummyArray = [CVCell]()
     var groutRadius: Float = 0.0
     var groutWidth: Float = 0.5
@@ -56,6 +57,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var oldIndex = 0
     var previewView: UIView!
     var capturedImage: UIImageView!
+    var fingerPrint: UIImageView!
     var captureSession : AVCaptureSession!
     var stillImageOutput : AVCaptureStillImageOutput!
     var previewLayer : AVCaptureVideoPreviewLayer!
@@ -66,6 +68,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var zoomInGestureRecognizer = UISwipeGestureRecognizer()
     var zoomOutGestureRecognizer = UISwipeGestureRecognizer()
     var borderView: UIView?
+    var cellsTouched = [CVCell]()
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -93,6 +96,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        rateMe()
         gridButton.enabled = false
         save.enabled = false
         
@@ -117,19 +121,24 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         zoomMinus.title = String.fontAwesomeIconWithName(.MinusSquareO)
         help.setTitleTextAttributes(attributes, forState: .Normal)
         help.title = String.fontAwesomeIconWithName(.QuestionCircle)
+        snapSelector.setTitleTextAttributes(attributes, forState: .Normal)
+        snapSelector.title = String.fontAwesomeIconWithName(.Random)
+//        snapSelector.setTitleTextAttributes(attributes, forState: .Normal)
+//        snapSelector.title = String.fontAwesomeIconWithName(.HandPointerO)
+
         //Camera Buttons
         btn.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 35, (UIScreen.mainScreen().bounds.size.height) - 129, 70, 70)
         btn.backgroundColor = UIColor.whiteColor()
         btn.addTarget(self, action: "buttonAction:", forControlEvents: .TouchDown)
         btn.addTarget(self, action: "buttonActionEnd:", forControlEvents: .TouchUpInside)
         self.view.addSubview(btn)
-        btn.layer.cornerRadius = 35
-        btn2.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 128, 58, 58)
+        btn.layer.cornerRadius = 0.5 * btn.bounds.size.width
+        btn2.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 129, 58, 58)
         btn2.backgroundColor = UIColor.clearColor()
         btn2.enabled = false
         self.view.addSubview(btn2)
-        btn2.layer.cornerRadius = 29
-        btn2.layer.borderWidth = 1.5
+        btn2.layer.cornerRadius = 0.5 * btn2.bounds.size.width
+        btn2.layer.borderWidth = 1.0
         btn2.layer.borderColor = UIColor.blackColor().CGColor
         capturedImage?.image = UIImage(named: "shutter")
         screenWidth = UIScreen.mainScreen().bounds.size.width
@@ -195,7 +204,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
                 previewLayer!.connection?.videoOrientation = AVCaptureVideoOrientation.Portrait
                 previewView.layer.addSublayer(previewLayer)
-                
+                previewView.layer.borderColor = groutColor.CGColor
+                previewView.layer.borderWidth = CGFloat(groutWidth)
                 captureSession!.startRunning()
             }
         }
@@ -215,8 +225,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         previewLayer!.frame = previewView.bounds
         borderView = UIView(frame: collectionView.frame)
         self.view.addSubview(borderView!)
+        borderView?.backgroundColor = UIColor.clearColor()
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
+        borderView?.hidden = true
     }
     
     // MARK: - Grid and Slider
@@ -299,57 +311,37 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func postSnap() {
-        let myCell = self.dummyArray.randomItem()
-        //let myCell = self.dummyArray.iterateItem()
-        let index = self.collectionView.indexPathForCell(myCell)
-        myCell.tag = index!.row
+        let snapCell = self.dummyArray.randomItem()
+        //let snapCell = self.dummyArray.iterateItem()
+        let index = self.collectionView.indexPathForCell(snapCell)
+        //snapCell.tag = index!.item
+        let cell = index!.item
         let imageView = UIImageView()
         imageView.frame = self.previewView.frame
         self.capturedImage = imageView
         let mask = CALayer()
         mask.contents = UIImage(named: "white.png")!.CGImage
-        mask.bounds = myCell.frame
+        mask.bounds = snapCell.frame
         mask.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        mask.position = myCell.center
+        mask.position = snapCell.center
         imageView.layer.mask = mask
         imageView.layer.masksToBounds = true
         imageView.image = self.capturedImage.image
         imageView.contentMode = .ScaleAspectFill
-        myCell.layer.borderColor = UIColor.clearColor().CGColor
+        snapCell.layer.borderColor = UIColor.clearColor().CGColor
         self.view.insertSubview(imageView, belowSubview: self.collectionView)
-        print("The cell tag is: \(myCell.tag)")
+        print("The cell is: \(cell)")
     }
     
     // MARK: - Camera Button
     func buttonAction(sender: UIButton) {
         
-//        for section in 0..<self.collectionView.numberOfSections() {
-//
-//            for item in 0..<self.collectionView.numberOfItemsInSection(section) {
-//                
-//                let indexPath = NSIndexPath(forRow: item, inSection: section)
-//                var cell = self.collectionView.cellForItemAtIndexPath(indexPath)
-//                
-//                // do what you want with the cell
-//                
-//            }
-//        }
-//        
-//        for (index, element) in self.dummyArray.enumerate() {
-//            print("Item \(index): \(element)")
-//        }
-
-//        for (var item = 0; item < collectionView.numberOfItemsInSection(0); item++) {
-//            
-//            // do something with the cell here.
-//        }
-
         dispatch_async(dispatch_get_main_queue()) {
             self.btn2.backgroundColor = UIColor.grayColor()
         }
         
         let currentCells = self.collectionView.visibleCells() as! [CVCell]
-        print("currentCells indices:\(self.dummyArray.indices)")
+        //print("currentsnapCell indices:\(self.dummyArray.indices)")
         
         if self.dummyArray.isEmpty == true  {
             UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -400,6 +392,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CVCell
         let borderWidth = groutWidth
+
         cell.frame = CGRectInset(cell.frame, -CGFloat(borderWidth), -CGFloat(borderWidth))
         cell.backgroundColor = UIColor.clearColor()
         //if groutColor != nil {
@@ -414,36 +407,81 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return cell
     }
     
-//    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
-//        if cell.shutter.hidden == true {
-//            return
-//        } else {
-//            doSnap(self)
-//        cell.shutter.hidden = true
-//        btn.hidden = true
-//        cell.tag = indexPath.row
-//        dispatch_async(dispatch_get_main_queue(), {
-//            let imageView = UIImageView()
-//            imageView.frame = self.previewView.frame
-//            self.capturedImage = imageView
-//            let mask = CALayer()
-//            mask.contents = UIImage(named: "white.png")!.CGImage
-//            mask.bounds = cell.frame
-//            mask.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//            mask.position = cell.center
-//            imageView.layer.mask = mask
-//            imageView.layer.masksToBounds = true
-//            imageView.image = self.capturedImage.image
-//            imageView.contentMode = .ScaleAspectFill
-//            //self.view.addSubview(imageView)
-//            cell.layer.borderColor = UIColor.clearColor().CGColor
-//            self.view.insertSubview(imageView, belowSubview: collectionView)
-//            print("The cell is: \(cell.tag)")
-//        })
-//        }
-//    }
+    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CVCell
+        //let currentCells = collectionView.visibleCells()
+        //print(currentCells)
+        //if (cellsTouched.indexOf(cell.tag) != nil) {
+        
+        if cellsTouched.contains(cell) {
+            return
+        } else {
+            if snapState == 1 {
+                doSnap(self)
+                
+                //cell.shutter.hidden = true
+                btn.hidden = true
+                cell.tag = indexPath.item
+                dispatch_async(dispatch_get_main_queue(), {
+                    let imageView = UIImageView()
+                    imageView.frame = self.previewView.frame
+                    self.capturedImage = imageView
+                    let mask = CALayer()
+                    mask.contents = UIImage(named: "white.png")!.CGImage
+                    mask.bounds = cell.frame
+                    mask.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                    mask.position = cell.center
+                    imageView.layer.mask = mask
+                    imageView.layer.masksToBounds = true
+                    imageView.image = self.capturedImage.image
+                    imageView.contentMode = .ScaleAspectFill
+                    //self.view.addSubview(imageView)
+                    cell.layer.borderColor = UIColor.clearColor().CGColor
+                    self.view.insertSubview(imageView, belowSubview: collectionView)
+                    print("The cell is: \(cell.tag)")
+                    self.cellsTouched.append(cell)
+                    print(self.cellsTouched)
+                    if self.cellsTouched.count > (self.someNumber * self.someNumber) - 1 {
+                        self.gridButton.enabled = true
+                        self.save.enabled = true
+                    }
+
+                })
+            }
+        }
+    }
+    // MARK: - Review App
+    var iMinSessions = 3
+    var iTryAgainSessions = 6
     
+    func rateMe() {
+        let neverRate = NSUserDefaults.standardUserDefaults().boolForKey("neverRate")
+        var numLaunches = NSUserDefaults.standardUserDefaults().integerForKey("numLaunches") + 1
+        
+        if (!neverRate && (numLaunches == iMinSessions || numLaunches >= (iMinSessions + iTryAgainSessions + 1)))
+        {
+            showRateMe()
+            numLaunches = iMinSessions + 1
+        }
+        NSUserDefaults.standardUserDefaults().setInteger(numLaunches, forKey: "numLaunches")
+    }
+    
+    func showRateMe() {
+        let alert = UIAlertController(title: "Rate Us", message: "Thanks for using Tile Cam", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Rate Tile Cam", style: UIAlertActionStyle.Default, handler: { alertAction in
+            UIApplication.sharedApplication().openURL(NSURL(string : "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1082732582")!)
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No Thanks", style: UIAlertActionStyle.Default, handler: { alertAction in
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "neverRate")
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Maybe Later", style: UIAlertActionStyle.Default, handler: { alertAction in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     // MARK: - Toolbar Buttons
     //Torch
     @IBAction func flashButton(sender: AnyObject) {
@@ -525,8 +563,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.flash.enabled = true
         groutColor = UIColor.lightGrayColor()
         groutWidth = 0.5
+        borderView?.hidden = true
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = 0.5
+        cellsTouched = []
     }
     //Save
     @IBAction func saveImageButtonPressed(sender: AnyObject) {
@@ -566,9 +606,56 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     if DeviceType.IS_IPHONE_4_OR_LESS {
                         self.navigationController?.setToolbarHidden(true, animated: false)
                     }
+                    self.borderView?.hidden = true
+                    self.cellsTouched = []
                 }
             }
         }
+    }
+    
+    // Snap Selector
+    @IBAction func snapSelectorPressed(sender: UIBarButtonItem) {
+        if snapState == 0 {
+            snapState = 1
+            btn.hidden = true
+            btn2.hidden = true
+            snapSelector.title = String.fontAwesomeIconWithName(.HandPointerO)
+            showFingerPrint()
+            print("snapState =\(snapState)")
+        } else {
+            snapState = 0
+            btn.hidden = false
+            btn2.hidden = false
+            snapSelector.title = String.fontAwesomeIconWithName(.Random)
+            animateSnapButton()
+            print("snapState =\(snapState)")
+        }
+    }
+    func showFingerPrint() {
+        fingerPrint  = UIImageView(frame: (previewView.frame))
+        //fingerPrint.frame = previewView.frame
+        //fingerPrint.bounds = previewView.bounds
+        fingerPrint.image = UIImage(named: "fingerprint")
+        self.view.addSubview(fingerPrint)
+        UIView.animateWithDuration(1.0, animations: {
+            self.fingerPrint.alpha = 0
+            }, completion: {
+                finished in
+                self.fingerPrint.removeFromSuperview()
+        })
+    }
+    func animateSnapButton() {
+        btn.transform = CGAffineTransformMakeScale(0, 0)
+        UIView.animateWithDuration(1.0,
+            delay: 0.5,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 10,
+            options: .CurveLinear,
+            animations: {
+                self.btn.transform = CGAffineTransformIdentity
+            },
+            completion: nil
+        )
     }
     
     //Share
@@ -706,6 +793,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         } else if DisplayingLabel.backgroundColor != nil {
             groutColor = DisplayingLabel.backgroundColor!
         }
+        borderView?.hidden = false
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
         createGrid()
@@ -722,7 +810,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 extension Array {
     mutating func randomItem() -> Element {
         let index = Int(arc4random_uniform(UInt32(self.count)))
-        print(index)
+        print("index: \(index)")
         return self.removeAtIndex(index)
         //return self[index]
     }

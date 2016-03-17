@@ -363,7 +363,7 @@ extension NSImage{
 		var imageRef : CGImageRef!
 		var sourceRef : CGImageSourceRef!
 		
-		sourceRef = CGImageSourceCreateWithData(data, nil)
+		sourceRef = CGImageSourceCreateWithData(data!, nil)
 		if (sourceRef != nil) {
 			imageRef = CGImageSourceCreateImageAtIndex(sourceRef, 0, nil)
 		}
