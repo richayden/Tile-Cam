@@ -1,7 +1,7 @@
 //
 //  CustomView.swift
 //
-//  Code generated using QuartzCode 1.39.12 on 3/16/16.
+//  Code generated using QuartzCode 1.39.12 on 3/17/16.
 //  www.quartzcodeapp.com
 //
 
@@ -10,9 +10,9 @@ import UIKit
 @IBDesignable
 class CustomView: UIView {
 	
-	var updateLayerValueForCompletedAnimation : Bool = false
-	var completionBlocks : Dictionary<CAAnimation, (Bool) -> Void> = [:]
 	var layers : Dictionary<String, AnyObject> = [:]
+	var completionBlocks : Dictionary<CAAnimation, (Bool) -> Void> = [:]
+	var updateLayerValueForCompletedAnimation : Bool = false
 	
 	
 	
@@ -224,7 +224,7 @@ class CustomView: UIView {
 	func addTileCamSplashAnimationCompletionBlock(completionBlock: ((finished: Bool) -> Void)?){
 		if completionBlock != nil{
 			let completionAnim = CABasicAnimation(keyPath:"completionAnim")
-			completionAnim.duration = 1.25
+			completionAnim.duration = 1.001
 			completionAnim.delegate = self
 			completionAnim.setValue("tileCamSplash", forKey:"animId")
 			completionAnim.setValue(false, forKey:"needEndAnim")
@@ -240,7 +240,7 @@ class CustomView: UIView {
 		let TileHiddenAnim      = CAKeyframeAnimation(keyPath:"hidden")
 		TileHiddenAnim.values   = [false, false, false, false]
 		TileHiddenAnim.keyTimes = [0, 0.7, 0.747, 1]
-		TileHiddenAnim.duration = 1.25
+		TileHiddenAnim.duration = 0.999
 		
 		let TileTileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([TileHiddenAnim], fillMode:fillMode)
 		layers["Tile"]?.addAnimation(TileTileCamSplashAnim, forKey:"TileTileCamSplashAnim")
@@ -250,11 +250,12 @@ class CustomView: UIView {
 		////Path9 animation
 		let path9TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		path9TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2)), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2))]
-		path9TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
-		path9TransformAnim.duration = 1.25
+		path9TransformAnim.keyTimes = [0, 0.122, 0.32, 0.698, 1]
+		path9TransformAnim.duration = 1
 		
 		let path9TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path9TransformAnim], fillMode:fillMode)
 		path9.addAnimation(path9TileCamSplashAnim, forKey:"path9TileCamSplashAnim")
@@ -264,11 +265,12 @@ class CustomView: UIView {
 		////Path10 animation
 		let path10TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		path10TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(4.2, 4.2, 4.2)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(4.2, 4.2, 4.2)), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(4.2, 4.2, 4.2))]
-		path10TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
-		path10TransformAnim.duration = 1.25
+		path10TransformAnim.keyTimes = [0, 0.122, 0.32, 0.698, 1]
+		path10TransformAnim.duration = 1
 		
 		let path10TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path10TransformAnim], fillMode:fillMode)
 		path10.addAnimation(path10TileCamSplashAnim, forKey:"path10TileCamSplashAnim")
@@ -278,11 +280,12 @@ class CustomView: UIView {
 		////Path11 animation
 		let path11TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		path11TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3)), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3))]
-		path11TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
-		path11TransformAnim.duration = 1.25
+		path11TransformAnim.keyTimes = [0, 0.122, 0.32, 0.698, 1]
+		path11TransformAnim.duration = 1
 		
 		let path11TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path11TransformAnim], fillMode:fillMode)
 		path11.addAnimation(path11TileCamSplashAnim, forKey:"path11TileCamSplashAnim")
@@ -292,11 +295,12 @@ class CustomView: UIView {
 		////Path12 animation
 		let path12TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		path12TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2)), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(2, 2, 2))]
-		path12TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
-		path12TransformAnim.duration = 1.25
+		path12TransformAnim.keyTimes = [0, 0.122, 0.32, 0.698, 1]
+		path12TransformAnim.duration = 1
 		
 		let path12TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path12TransformAnim], fillMode:fillMode)
 		path12.addAnimation(path12TileCamSplashAnim, forKey:"path12TileCamSplashAnim")
@@ -306,11 +310,12 @@ class CustomView: UIView {
 		////Path13 animation
 		let path13TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		path13TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(4.1, 4.1, 4.1)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(4.1, 4.1, 4.1)), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(4.1, 4.1, 4.1))]
-		path13TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
-		path13TransformAnim.duration = 1.25
+		path13TransformAnim.keyTimes = [0, 0.122, 0.32, 0.698, 1]
+		path13TransformAnim.duration = 1
 		
 		let path13TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path13TransformAnim], fillMode:fillMode)
 		path13.addAnimation(path13TileCamSplashAnim, forKey:"path13TileCamSplashAnim")
@@ -320,11 +325,12 @@ class CustomView: UIView {
 		////Path14 animation
 		let path14TransformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		path14TransformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3)), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DIdentity), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(3, 3, 3))]
-		path14TransformAnim.keyTimes = [0, 0.307, 0.698, 1]
-		path14TransformAnim.duration = 1.25
+		path14TransformAnim.keyTimes = [0, 0.122, 0.32, 0.698, 1]
+		path14TransformAnim.duration = 1
 		
 		let path14TileCamSplashAnim : CAAnimationGroup = QCMethod.groupAnimations([path14TransformAnim], fillMode:fillMode)
 		path14.addAnimation(path14TileCamSplashAnim, forKey:"path14TileCamSplashAnim")

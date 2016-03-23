@@ -96,7 +96,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        rateMe()
         gridButton.enabled = false
         save.enabled = false
         
@@ -129,8 +128,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         //Camera Buttons
         btn.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 35, (UIScreen.mainScreen().bounds.size.height) - 129, 70, 70)
         btn.backgroundColor = UIColor.whiteColor()
-        btn.addTarget(self, action: "buttonAction:", forControlEvents: .TouchDown)
-        btn.addTarget(self, action: "buttonActionEnd:", forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: #selector(ViewController.buttonAction(_:)), forControlEvents: .TouchDown)
+        btn.addTarget(self, action: #selector(ViewController.buttonActionEnd(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn)
         btn.layer.cornerRadius = 0.5 * btn.bounds.size.width
         btn2.frame = CGRectMake((UIScreen.mainScreen().bounds.size.width / 2) - 29, (UIScreen.mainScreen().bounds.size.height) - 129, 58, 58)
@@ -154,7 +153,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         slider!.maximumValue = numberOfSteps;
         slider!.minimumValue = 0;
         slider!.continuous = true
-        slider!.addTarget(self, action: "valueChanged:", forControlEvents: .ValueChanged)
+        slider!.addTarget(self, action: #selector(ViewController.valueChanged(_:)), forControlEvents: .ValueChanged)
         slider!.minimumTrackTintColor = UIColor.whiteColor()
         slider!.setThumbImage((UIImage.fontAwesomeIconWithName(.DotCircleO, textColor: UIColor.whiteColor(), size: CGSizeMake(36, 36))), forState: .Normal)
         createGrid()
@@ -229,6 +228,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         borderView!.layer.borderColor = groutColor.CGColor
         borderView!.layer.borderWidth = CGFloat(groutWidth)
         borderView?.hidden = true
+        rateMe()
     }
     
     // MARK: - Grid and Slider
@@ -361,6 +361,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func buttonActionEnd(sender: UIButton) {
+        self.snapSelector.enabled = false
+        self.switchCamera.enabled = false
+
         dispatch_async(dispatch_get_main_queue()) {
             self.btn2.backgroundColor = UIColor.clearColor()
             if self.dummyArray.count < 1 {
@@ -418,7 +421,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         } else {
             if snapState == 1 {
                 doSnap(self)
-                
+                switchCamera.enabled = false
+                snapSelector.enabled = false
                 //cell.shutter.hidden = true
                 btn.hidden = true
                 cell.tag = indexPath.item
@@ -442,6 +446,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     self.cellsTouched.append(cell)
                     print(self.cellsTouched)
                     if self.cellsTouched.count > (self.someNumber * self.someNumber) - 1 {
+                        self.flash.enabled = false
                         self.gridButton.enabled = true
                         self.save.enabled = true
                     }
@@ -549,24 +554,47 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 self.navigationController?.setToolbarHidden(true, animated: false)
             }
         }
-        slider!.hidden = false
-        createGrid()
-        dummyArray = [CVCell]()
-        btn.hidden = false
-        btn.enabled = true
-        btn.backgroundColor = UIColor.whiteColor()
-        self.gridButton.enabled = false
-        self.save.enabled = false
-        self.zoomMinus.enabled = true
-        self.zoomPlus.enabled = true
-        self.switchCamera.enabled = true
-        self.flash.enabled = true
-        groutColor = UIColor.lightGrayColor()
-        groutWidth = 0.5
-        borderView?.hidden = true
-        borderView!.layer.borderColor = groutColor.CGColor
-        borderView!.layer.borderWidth = 0.5
-        cellsTouched = []
+        if snapState == 0 {
+            slider!.hidden = false
+            createGrid()
+            dummyArray = [CVCell]()
+            btn.hidden = false
+            btn.enabled = true
+            btn.backgroundColor = UIColor.whiteColor()
+            self.gridButton.enabled = false
+            self.save.enabled = false
+            self.zoomMinus.enabled = true
+            self.zoomPlus.enabled = true
+            self.switchCamera.enabled = true
+            self.snapSelector.enabled = true
+            self.flash.enabled = true
+            groutColor = UIColor.lightGrayColor()
+            groutWidth = 0.5
+            borderView?.hidden = true
+            borderView!.layer.borderColor = groutColor.CGColor
+            borderView!.layer.borderWidth = 0.5
+            cellsTouched = []
+        } else {
+            slider!.hidden = false
+            createGrid()
+            dummyArray = [CVCell]()
+            btn.hidden = true
+            btn.enabled = true
+            btn.backgroundColor = UIColor.whiteColor()
+            self.gridButton.enabled = false
+            self.save.enabled = false
+            self.zoomMinus.enabled = true
+            self.zoomPlus.enabled = true
+            self.switchCamera.enabled = true
+            self.snapSelector.enabled = true
+            self.flash.enabled = true
+            groutColor = UIColor.lightGrayColor()
+            groutWidth = 0.5
+            borderView?.hidden = true
+            borderView!.layer.borderColor = groutColor.CGColor
+            borderView!.layer.borderWidth = 0.5
+            cellsTouched = []
+        }
     }
     //Save
     @IBAction func saveImageButtonPressed(sender: AnyObject) {
@@ -587,27 +615,52 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                     if subview is UIImageView {
                         subview.removeFromSuperview()
                     }
-                    self.slider!.hidden = false
-                    self.createGrid()
-                    self.dummyArray = [CVCell]()
-                    self.btn.hidden = false
-                    self.btn.enabled = true
-                    self.btn.backgroundColor = UIColor.whiteColor()
-                    self.groutColor = UIColor.lightGrayColor()
-                    self.groutWidth = 0.5
-                    self.borderView!.layer.borderColor = self.groutColor.CGColor
-                    self.borderView!.layer.borderWidth = 0.5
-                    self.save.enabled = false
-                    self.gridButton.enabled = false
-                    self.flash.enabled = true
-                    self.switchCamera.enabled = true
-                    self.zoomMinus.enabled = true
-                    self.zoomPlus.enabled = true
-                    if DeviceType.IS_IPHONE_4_OR_LESS {
-                        self.navigationController?.setToolbarHidden(true, animated: false)
+                    if self.snapState == 0 {
+                        self.slider!.hidden = false
+                        self.createGrid()
+                        self.dummyArray = [CVCell]()
+                        self.btn.hidden = false
+                        self.btn.enabled = true
+                        self.btn.backgroundColor = UIColor.whiteColor()
+                        self.groutColor = UIColor.lightGrayColor()
+                        self.groutWidth = 0.5
+                        self.borderView!.layer.borderColor = self.groutColor.CGColor
+                        self.borderView!.layer.borderWidth = 0.5
+                        self.save.enabled = false
+                        self.gridButton.enabled = false
+                        self.flash.enabled = true
+                        self.switchCamera.enabled = true
+                        self.zoomMinus.enabled = true
+                        self.zoomPlus.enabled = true
+                        if DeviceType.IS_IPHONE_4_OR_LESS {
+                            self.navigationController?.setToolbarHidden(true, animated: false)
+                        }
+                        self.borderView?.hidden = true
+                        self.cellsTouched = []
+                    } else {
+                        self.slider!.hidden = false
+                        self.createGrid()
+                        self.dummyArray = [CVCell]()
+                        self.btn.hidden = true
+                        self.btn.enabled = true
+                        self.btn.backgroundColor = UIColor.whiteColor()
+                        self.groutColor = UIColor.lightGrayColor()
+                        self.groutWidth = 0.5
+                        self.borderView!.layer.borderColor = self.groutColor.CGColor
+                        self.borderView!.layer.borderWidth = 0.5
+                        self.save.enabled = false
+                        self.gridButton.enabled = false
+                        self.flash.enabled = true
+                        self.switchCamera.enabled = true
+                        self.zoomMinus.enabled = true
+                        self.zoomPlus.enabled = true
+                        if DeviceType.IS_IPHONE_4_OR_LESS {
+                            self.navigationController?.setToolbarHidden(true, animated: false)
+                        }
+                        self.borderView?.hidden = true
+                        self.cellsTouched = []
+
                     }
-                    self.borderView?.hidden = true
-                    self.cellsTouched = []
                 }
             }
         }

@@ -11,26 +11,27 @@ import UIKit
 class SplashViewController: UIViewController {
     
     @IBOutlet var splashView: CustomView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBarHidden = true
         navigationController?.setToolbarHidden(true, animated: false)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         let timer = NSTimer.scheduledTimerWithTimeInterval(
-            1.5, target: self, selector: Selector("show"), userInfo: nil, repeats: false)
+            1.1, target: self, selector: #selector(SplashViewController.show), userInfo: nil, repeats: false)
         dispatch_async(dispatch_get_main_queue()) {
             self.splashView.addTileCamSplashAnimationCompletionBlock { (finished) -> Void in
                 print("Animated")
             }
         }
-
     }
     
     override func viewWillDisappear(animated: Bool) {

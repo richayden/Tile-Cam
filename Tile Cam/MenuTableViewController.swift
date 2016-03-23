@@ -8,6 +8,7 @@
 
 import UIKit
 import FontAwesome_swift
+@IBDesignable
 
 class MenuTableViewController: UITableViewController {
     
@@ -37,12 +38,12 @@ class MenuTableViewController: UITableViewController {
         static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
     }
     
-    
-    var iconText = ["\u{f185}", "\u{f021}", "\u{f00a}", "\u{f059}", "\u{f192}", "\u{f12d}", "\u{f002}", "\u{f03e}"]
+    //\u{f25a}
+    var iconText = ["\u{f185}", "\u{f021}", "\u{f074} \u{f25a}", "\u{f00a}", "\u{f192}", "\u{f12d}", "\u{f002}", "\u{f03e}"]
         
-    var menuItems = ["Torch Light On/Off:", "Toggle Camera:", "Grout Settings:", "Help:", "Tile Slider", "Clear:", "Zoom In/Out:", "Save Image:"]
+    var menuItems = ["Torch Light On/Off:", "Toggle Camera:", "Toggle Snap Mode:", "Grout Settings:", "Tile Slider", "Clear:", "Zoom In/Out:", "Save Image:"]
     
-    var subtitles = ["Turn the torch on/off.", "Toggle front/back facing cameras.", "Select line width and color.", "You are here.", "Slide to change tile grid size.", "Clear the current tile grid.", "Zoom in/out.", "Save tile image to photo library."]
+    var subtitles = ["Turn the torch on/off.", "Toggle front/back facing cameras.", "Toggle random/touch snap modes.", "Select line width and color.", "Slide to change tile grid size.", "Clear the current tile grid.", "Zoom in/out.", "Save tile image to photo library."]
     var currentItem = "Done"
     
     override func viewDidLoad() {
@@ -51,7 +52,7 @@ class MenuTableViewController: UITableViewController {
         if DeviceType.IS_IPHONE_4_OR_LESS {
             return
         } else {
-        devView.frame = CGRectMake(0, (UIScreen.mainScreen().bounds.size.height) - 65, (UIScreen.mainScreen().bounds.size.width), 65)
+        devView.frame = CGRectMake(0, (UIScreen.mainScreen().bounds.size.height) - 70, (UIScreen.mainScreen().bounds.size.width), 70)
         devView.clipsToBounds = true
         
         self.view.addSubview(devView)
@@ -86,6 +87,7 @@ class MenuTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.fontawesomeLabel.text = iconText[indexPath.row]
+        
         cell.fontawesomeLabel.textColor = UIColor.whiteColor()
         cell.titleLabel.text = menuItems[indexPath.row]
         cell.titleLabel.textColor = (menuItems[indexPath.row] == currentItem) ? UIColor.whiteColor() : UIColor.whiteColor()

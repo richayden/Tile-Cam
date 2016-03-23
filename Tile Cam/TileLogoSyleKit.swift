@@ -126,7 +126,7 @@ public class TileLogoSyleKit : NSObject {
         set {
             Cache.tileSquareTargets = newValue
             for target: AnyObject in newValue {
-                target.performSelector("setImage:", withObject: TileLogoSyleKit.imageOfTileSquare)
+                target.performSelector(#selector(CIImageAccumulator.setImage(_:)), withObject: TileLogoSyleKit.imageOfTileSquare)
             }
         }
     }

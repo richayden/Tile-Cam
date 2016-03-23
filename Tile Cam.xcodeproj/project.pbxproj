@@ -14,6 +14,8 @@
 		9B6C90881C7A4AF40031F324 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6C90861C7A4AF40031F324 /* QCMethod.swift */; };
 		9B6F409B1C69665200FF3CC1 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F409A1C69665200FF3CC1 /* MenuTableViewController.swift */; };
 		9B6F409D1C69668D00FF3CC1 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F409C1C69668D00FF3CC1 /* MenuTableViewCell.swift */; };
+		9B9713981C9A4C8A00D9C53E /* GlassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9713971C9A4C8A00D9C53E /* GlassesView.swift */; };
+		9B97139C1C9A540000D9C53E /* GlassesStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97139B1C9A540000D9C53E /* GlassesStyleKit.swift */; };
 		9BA8ACE51C5FCF540057ACF2 /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8ACE41C5FCF540057ACF2 /* ImageMaker.swift */; };
 		9BABB8C71C83B4E0006D73E8 /* TileLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB8C61C83B4E0006D73E8 /* TileLogoView.swift */; };
 		9BABB8CB1C83B698006D73E8 /* TileLogoSyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB8CA1C83B698006D73E8 /* TileLogoSyleKit.swift */; };
@@ -34,6 +36,8 @@
 		9B6C90861C7A4AF40031F324 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		9B6F409A1C69665200FF3CC1 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		9B6F409C1C69668D00FF3CC1 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		9B9713971C9A4C8A00D9C53E /* GlassesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassesView.swift; sourceTree = "<group>"; };
+		9B97139B1C9A540000D9C53E /* GlassesStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassesStyleKit.swift; sourceTree = "<group>"; };
 		9BA8ACE41C5FCF540057ACF2 /* ImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMaker.swift; sourceTree = "<group>"; };
 		9BABB8C61C83B4E0006D73E8 /* TileLogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLogoView.swift; sourceTree = "<group>"; };
 		9BABB8CA1C83B698006D73E8 /* TileLogoSyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileLogoSyleKit.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				9B6C90861C7A4AF40031F324 /* QCMethod.swift */,
 				9BABB8C61C83B4E0006D73E8 /* TileLogoView.swift */,
 				9BABB8CA1C83B698006D73E8 /* TileLogoSyleKit.swift */,
+				9B97139B1C9A540000D9C53E /* GlassesStyleKit.swift */,
+				9B9713971C9A4C8A00D9C53E /* GlassesView.swift */,
 				9BB9DD631C508E140071FA96 /* white.png */,
 				9BEF975B1C3C30C100C4CF36 /* Assets.xcassets */,
 				9BEF97581C3C30C100C4CF36 /* Main.storyboard */,
@@ -256,10 +262,12 @@
 				9BABB8C71C83B4E0006D73E8 /* TileLogoView.swift in Sources */,
 				9B24DCE61C3DA6AC0012A595 /* ViewController.swift in Sources */,
 				9BABB8CB1C83B698006D73E8 /* TileLogoSyleKit.swift in Sources */,
+				9B9713981C9A4C8A00D9C53E /* GlassesView.swift in Sources */,
 				9B6F409D1C69668D00FF3CC1 /* MenuTableViewCell.swift in Sources */,
 				9B6F409B1C69665200FF3CC1 /* MenuTableViewController.swift in Sources */,
 				9BEF97551C3C30C100C4CF36 /* AppDelegate.swift in Sources */,
 				9BC196511C6A76CC00A881C0 /* SplashViewController.swift in Sources */,
+				9B97139C1C9A540000D9C53E /* GlassesStyleKit.swift in Sources */,
 				9BA8ACE51C5FCF540057ACF2 /* ImageMaker.swift in Sources */,
 				9B6C90881C7A4AF40031F324 /* QCMethod.swift in Sources */,
 			);
@@ -385,6 +393,7 @@
 					Cam,
 				);
 				INFOPLIST_FILE = "Tile Cam/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richayden.Tile-Cam";
 				PRODUCT_NAME = "Tile Cam";
@@ -408,6 +417,7 @@
 					Cam,
 				);
 				INFOPLIST_FILE = "Tile Cam/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.richayden.Tile-Cam";
 				PRODUCT_NAME = "Tile Cam";

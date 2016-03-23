@@ -63,7 +63,7 @@ class CVCell: UICollectionViewCell, UIGestureRecognizerDelegate {
             
             shutter.alpha = 0.1
                         
-            let recognizer = UITapGestureRecognizer(target: self, action:Selector("shutterTap:"))
+            let recognizer = UITapGestureRecognizer(target: self, action:#selector(CVCell.shutterTap(_:)))
             recognizer.delegate = self
             recognizer.numberOfTapsRequired = 1
             self.addGestureRecognizer(recognizer)
