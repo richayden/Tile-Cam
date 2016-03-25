@@ -630,6 +630,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                         self.gridButton.enabled = false
                         self.flash.enabled = true
                         self.switchCamera.enabled = true
+                        self.snapSelector.enabled = true
                         self.zoomMinus.enabled = true
                         self.zoomPlus.enabled = true
                         if DeviceType.IS_IPHONE_4_OR_LESS {
@@ -652,6 +653,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                         self.gridButton.enabled = false
                         self.flash.enabled = true
                         self.switchCamera.enabled = true
+                        self.snapSelector.enabled = true
                         self.zoomMinus.enabled = true
                         self.zoomPlus.enabled = true
                         if DeviceType.IS_IPHONE_4_OR_LESS {
