@@ -250,6 +250,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.collectionView!.delegate = self
         self.collectionView!.registerClass(CVCell.self, forCellWithReuseIdentifier: "Cell")
         self.collectionView!.backgroundColor = UIColor.clearColor()
+        // Added to 1.3 Bug Fix - collectionView was scrolling
+        self.collectionView!.scrollEnabled = false
         dispatch_async(dispatch_get_main_queue()) {
             self.view.insertSubview(self.collectionView!, belowSubview: self.slider!)
         }
